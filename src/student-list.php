@@ -1,7 +1,3 @@
-<?php
-include_once('power-session.php');
-require_once('init.php');
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
