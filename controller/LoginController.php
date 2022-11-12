@@ -30,9 +30,4 @@ class LoginController {
          header('Location: /Sistema Monitoria/');
        }
     }
-
-    public function logout() {
-      session_destroy();
-      header('Location: /Sistema Monitoria/');
-  }
 }

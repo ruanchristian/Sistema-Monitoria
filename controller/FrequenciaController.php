@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Fortaleza');
 
 class FrequenciaController {
 
@@ -9,6 +10,9 @@ class FrequenciaController {
           'cache' => '/path/to/compilation_cache',
           'auto_reload' => true
         ]);
-        return $template->render(['nome' => $_SESSION['usr'] ?? "Unknown Source"]);
+        return $template->render([
+          'nome' => $_SESSION['usr'] ?? "Unknown Source",
+          'date' => date("Y-m-d", time())
+        ]);
     }
 }
