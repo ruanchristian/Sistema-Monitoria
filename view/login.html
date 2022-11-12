@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login | Monitoria</title>
+
+    <!-- Bootstrap CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+
+    <!-- My Custom CSS and JS file -->
+    <link rel="stylesheet" href="/Sistema Monitoria/styles/login-style.css">
+    <link rel="icon" href="/Sistema Monitoria/img/infortec2b-icon.png">
+    <script src="/Sistema Monitoria/js/frames.js"></script>
+</head>
+
+<body>
+    <main class="form-signin text-center mx-auto">
+        <h3 class="text-white">Sistema de Monitoria</h3>
+        <img id="icon-2b" class="img-fluid mx-auto d-block mb-3" src="/Sistema Monitoria/img/infortec2b-icon.png">
+        <form method="POST" action="/Sistema Monitoria/login/check">
+            <div class="form-floating">
+                <input required class="form-control" id="field01" type="text" name="matricula" oninput="forceOp()"
+                    maxlength="7" placeholder="Matrícula">
+                <label for="field01">Matrícula</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input required class="form-control" type="password" name="pass" id="pass" maxlength="17"
+                    placeholder="Senha">
+                <label for="pass">Senha</label>
+            </div>
+            <input class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">
+        </form>
+
+        {% if error != null %}
+        <div class="alert alert-danger alert-dismissible fade show mt-4">
+            {{error['msg']}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endif %}  
+    </main>
+</body>
+<script>
+    const msg = "Informe sua matrícula para prosseguir";
+    var doc = document.getElementById("field01");
+
+    doc.addEventListener('invalid', () => {
+        doc.setCustomValidity(msg);
+    });
+
+    doc.addEventListener('change', () => {
+        doc.setCustomValidity('');
+    })
+</script>
+
+</html>

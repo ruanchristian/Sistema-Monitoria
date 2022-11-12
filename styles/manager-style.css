@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #4a4a4a;
+}
+
+.side-bar {
+    position: fixed;
+    left: -250px;
+    width: 240px;
+    top: 0%;
+    height: 100%;
+    background-color: rgb(37, 37, 39);
+    overflow-y: auto;
+    transition: all .5s ease-in-out;
+}
+
+.side-bar ul a {
+    display: block;
+    width: 100%;
+    line-height: 36px;
+    font-size: 17px;
+    color: whitesmoke;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 1px solid black;
+    transition: all .3s;
+}
+
+.side-bar ul li :hover {
+    background-color: rgb(24, 139, 233);
+}
+
+.side-bar img:hover {
+    background-color: rgb(24, 56, 83);
+}
+
+.side-bar small {
+    position: absolute;
+    bottom: 8%;
+    left: 7%;
+}
+
+#year {
+    bottom: 4%;
+    left: 40%;
+    font-style: italic;
+}
+
+#check-box {
+    display: none;
+}
+
+label #navBarOp {
+    background-color: rgb(37, 37, 39);
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 1.6%;
+    font-size: 25px;
+    color: whitesmoke;
+    padding: 6px 12px;
+    transition: all .6s ease;
+}
+
+#check-box:checked~.side-bar {
+    z-index: 1111;
+    left: 0;
+}
+
+#check-box:checked~label #navBarOp {
+    margin-left: 250px;
+    position: fixed;
+    z-index: 1111;
+}
+
+.infos {
+    margin: auto;
+    background: rgba(250, 246, 246, 0.925);
+    width: 40%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+#superior-bar {
+    background-color: rgb(37, 37, 39);
+    width: 100%;
+    height: 10%;
+}
+
+#superior-bar ul {
+    display: flex;
+    justify-content: end;
+    padding-right: 0.2%;
+}
+
+#superior-bar ul li i {
+    color: #FFF;
+    padding: 17px;
+    display: inline-flex;
+    text-decoration: none;
+    cursor: auto;
+}
+
+#ic-2b {
+    width: 36%;
+    cursor: pointer
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 6px 6px 6px;
+}
