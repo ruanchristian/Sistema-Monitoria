@@ -15,6 +15,10 @@
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
 
+    <!-- Font Awesome LIB -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- My Custom CSS and JS file -->
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/login-style.css">
     <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
@@ -37,7 +41,10 @@
                     placeholder="Senha">
                 <label for="pass">Senha</label>
             </div>
-            <input class="w-100 btn btn-lg btn-primary" type="submit" value="Entrar">
+            <button class="w-100 btn btn-lg btn-primary" type="submit">
+                <i class="fas fa-sign-in-alt"></i>
+                Entrar
+            </button>
         </form>
 
         {% if error != null %}

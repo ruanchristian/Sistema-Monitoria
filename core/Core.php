@@ -46,8 +46,10 @@ class Core {
     }
     
     if ($this->monitor) {
-      $permission = ["HomeController"];
+      $permission = ["HomeController", "FrequenciaController", "SenhaController"];
       if (!isset($this->controller) || !in_array($this->controller, $permission)) {
+        session_destroy();
+        $this->controller = "LoginController";
         $this->invokeMethod = "onCreate";
       }
     } else {
