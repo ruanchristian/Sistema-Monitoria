@@ -11,7 +11,7 @@ class FrequenciaController {
           'auto_reload' => true
         ]);
         return $template->render([
-          'nome' => $_SESSION['usr'] ?? "Unknown Source",
+          'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'date' => date("Y-m-d", time())
         ]);
     }

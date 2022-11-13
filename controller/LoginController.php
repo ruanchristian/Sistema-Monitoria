@@ -1,6 +1,17 @@
 <?php
 
 class LoginController {
+  private $valError;
+
+    public function __construct() {
+      $this->valError = $_SESSION['error_msg'] ?? null;        
+
+      if($this->valError && $this->valError['contador'] == 0) {
+        $_SESSION['error_msg']['contador']++;
+      } else {
+        unset($_SESSION['error_msg']);
+      }
+    }
 
     public function onCreate() {
         $loader = new \Twig\Loader\FilesystemLoader('view');
@@ -13,21 +24,21 @@ class LoginController {
     }
 
     public function check() {
-       if (empty($_POST['matricula']) || empty($_POST['pass'])) {
-        $_SESSION['error_msg'] = ['msg' => "Preencha ambos os campos", 'contador' => 0];
-        header('Location: /Sistema Monitoria/');
-        die;
-       }
 
        try {
-        $monitor = new Monitor();
-        $monitor->setMatricula($_POST['matricula']);
-        $monitor->setPassword($_POST['pass']);
-        $monitor->validateLogin();
+        $manager = new Manager();
+        $manager->setMatricula($_POST['matricula']);
+        $manager->setPassword($_POST['pass']);
+        $manager->validateLogin();
         header("Location: /Sistema Monitoria/home");
        } catch (\Exception $e) {
          $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 0];
          header('Location: /Sistema Monitoria/');
        }
     }
+
+    public function logout() {
+      session_destroy();
+      header('Location: /Sistema Monitoria/');
+  }
 }

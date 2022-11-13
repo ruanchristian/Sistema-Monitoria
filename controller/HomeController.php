@@ -8,6 +8,6 @@
           'cache' => '/path/to/compilation_cache',
           'auto_reload' => true
         ]);
-        return $template->render(['nome' => $_SESSION['usr'] ?? "Unknown Source"]);
+        return $template->render(['nome' => $_SESSION['access']['username'] ?? "Unknown Source"]);
     }
   }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mudar Senha</title>
+    <title>Mudar senha</title>
     <!-- Bootstrap CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -25,24 +25,21 @@
 
 <body>
 
-    <div id="superior-bar">
-        <ul>
-            <li class="list-group-item">
-                <i>
-                    Olá:
-                </i>
-                <i>
-                    {{nome|upper}}
-                </i>
-            </li>
-
-        </ul>
-    </div>
-
     {% include 'template-menu.html' %}
 
-    <form class="formPChange text-center" method="POST" action="monitor/resetPass">
+    <form class="formPChange text-center" method="POST" action="senha/reset">
+        {% if error %}
+        <div class="alert alert-danger mx-auto w-25">
+            {{error['msg']}}
+        </div>
+        {% endif %}
 
+        {% if isReseted %}
+        <div class="alert alert-success mx-auto w-25 alert-dismissible fade show mt-4">
+            {{isReseted['msg']}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+        {% endif %}
         <div class="form-group text-white">
             <label for="atual">
                 Sua senha atual: <br>
@@ -56,7 +53,10 @@
                 Confirme sua nova senha: <br>
                 <input required class="form-control" type="password" name="newPass2" id="newPass2" maxlength="17">
             </label><br><br>
-            <input class="btn btn-primary" type="submit" value="Salvar">
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-floppy-disk"></i>
+                Salvar
+            </button>
         </div>
     </form>
 
