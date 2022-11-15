@@ -4,7 +4,7 @@
             <i>
                 Bem vindo(a):
             </i>
-            <i class="text-truncate">
+            <i>
                 {{nome|upper}}
             </i>
         </li>
@@ -19,15 +19,23 @@
 
 <div class="side-bar">
     <img id="ic-2b" class="mx-auto d-block" src="/Sistema Monitoria/assets/img/infortec2b-icon.png" onclick="openIng()">
-    <ul>
-        <li><a href="home"><i class="fas fa-house"></i> Home </a></li>
-        <li><a href="frequencia"><i class="fas fa-check"></i> Registrar frequência </a></li>
-        <li><a href="#"><i class="fas fa-eye"></i> Consultar frequências </a></li>
-        <li><a href="#"><i class="fas fa-message"></i> Deixar observações </a></li>
-        <li><a href="senha"><i class="fas fa-key"></i> Alterar senha </a></li>
-        <li><a href="#"><i class="fas fa-users"></i> Alunos </a></li>
-        <li><a href="/Sistema Monitoria/login/logout"><i class="fas fa-right-from-bracket"></i> Sair </a></li>
-    </ul>
+    <div class="parent navbar">
+        <ul>
+            <li><a href="home"><i class="fas fa-house"></i> Home </a></li>
+            <li><a href="frequencia"><i class="fas fa-check"></i> Registrar frequência </a></li>
+            <li class="text-white list-group-item"><a href="#drop-down" data-bs-toggle="collapse"
+                    class="dropdown-toggle"><i class="fas fa-eye"></i> Consultar </a>
+                <ul class="collapse list-unstyled ms-3" id="drop-down">
+                    <li class="list-group-item"><a href="#"><i class="fas fa-calendar-check"></i> Frequencias </a></li>
+                    <li class="list-group-item"><a href="#"> Ocorrências </a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fas fa-message"></i> Deixar observações </a></li>
+            <li><a href="senha"><i class="fas fa-key"></i> Alterar senha </a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Alunos </a></li>
+            <li><a href="/Sistema Monitoria/login/logout"><i class="fas fa-right-from-bracket"></i> Sair </a></li>
+        </ul>
+    </div>
     <small class="text-break text-white">Created by <a class="creator text-decoration-none text-white" target="_blank"
             href="https://www.instagram.com/ruanchristian7/">Ruan Christian</a> - 2º B</small>
     <small class="text-white" id="year">

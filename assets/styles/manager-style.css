@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --hover-color: rgb(24, 139, 233);
+    --hover-img-color: rgb(24, 56, 83);
+}
+
 body {
     background: #4a4a4a;
 }
@@ -32,12 +37,12 @@ body {
     transition: all .3s;
 }
 
-.side-bar ul li :hover {
-    background-color: rgb(24, 139, 233);
+.parent li > a:hover {
+    background-color: var(--hover-color);
 }
 
 .side-bar img:hover {
-    background-color: rgb(24, 56, 83);
+    background-color: var(--hover-img-color);
 }
 
 .side-bar small {
