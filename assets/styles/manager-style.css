@@ -19,6 +19,7 @@ body {
     width: 240px;
     top: 0%;
     height: 100%;
+    z-index: 1111;
     background-color: rgb(37, 37, 39);
     overflow-y: auto;
     transition: all .5s ease-in-out;
@@ -34,7 +35,7 @@ body {
     box-sizing: border-box;
     border-top: 1px solid rgba(255, 255, 255, .1);
     border-bottom: 1px solid black;
-    transition: all .3s;
+    transition: all .2s ease;
 }
 
 .parent li > a:hover {
@@ -79,14 +80,12 @@ label #navBarOp {
 }
 
 #check-box:checked~.side-bar {
-    z-index: 1111;
     left: 0;
 }
 
 #check-box:checked~label #navBarOp {
     margin-left: 250px;
     position: fixed;
-    z-index: 1111;
 }
 
 .infos {

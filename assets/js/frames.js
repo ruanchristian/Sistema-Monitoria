@@ -47,10 +47,10 @@ const imgs = [
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);
     if(checkbox.checked) {
-        state.innerHTML = "Faltou";
+        state.innerHTML = "F";
         state.style.color = "red";
     } else {
-        state.innerHTML = "Presente";
+        state.innerHTML = "P";
         state.style.color = "black";
     }
   }

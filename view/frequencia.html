@@ -38,7 +38,7 @@
         <form method="POST" action="frequencia/getAlunosByTurma">
             <div class="container">
                 <div class="row mb-3 mt-2 mx-auto">
-                    <div class="col-md">
+                    <div class="col-md mb-2">
                         <div class="form-floating">
                             <input disabled type="date" value="{{date}}" class="form-control" id="dateField">
                             <label for="floatingInputGrid">Data:</label>
@@ -84,7 +84,7 @@
                   <span class="d-inline"> {{aluno['nome']}} - </span>
                   <small class="user-select-none"> ({{aluno['matricula']}})</small><br>
                   <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
-                  <span id="{{aluno['id']}}" class="float-end">Presente</span>
+                  <span id="{{aluno['id']}}" class="float-end">P</span>
                   <hr>
                 {% endfor %}
             </p>
