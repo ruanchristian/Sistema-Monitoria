@@ -31,7 +31,7 @@ class Manager {
         $stmt->execute(array(md5($pass1), $matricula));
     }
 
-    public function getCurrentPassword($pdoConn, $matricula) {
+    private function getCurrentPassword($pdoConn, $matricula) {
       $stmt = $pdoConn->prepare("SELECT * FROM monitores WHERE matricula = ?");
       $stmt->execute(array($matricula));
 

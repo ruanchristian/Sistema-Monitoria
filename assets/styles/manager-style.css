@@ -102,12 +102,15 @@ label #navBarOp {
     .infos {
        width: 85%;
     }
+    #superior-bar ul {
+        text-overflow: ellipsis;
+    }
 }
 
 #superior-bar ul {
     display: flex;
     justify-content: end;
-    padding-right: 0.2%;
+    padding-right: 0.1%;
 }
 
 #superior-bar ul li i {

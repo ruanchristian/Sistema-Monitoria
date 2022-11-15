@@ -23,8 +23,8 @@ html {
     transition: all 0.3s ease;
     display: block;
     position: relative;
-    background: #ff4651;
-    box-shadow: 0 8px 16px -1px rgba(255, 70, 81, 0.2);
+    background: #48ea8b;
+    box-shadow: 0 8px 16px -1px rgba(72, 234, 139, 0.2);
 }
 
 .switch input+span:before,
@@ -60,8 +60,8 @@ html {
 }
 
 .switch input:checked+span {
-    background: #48ea8b;
-    box-shadow: 0 8px 16px -1px rgba(72, 234, 139, 0.2);
+    background: #ff4651;
+    box-shadow: 0 8px 16px -1px rgba(255, 70, 81, 0.2);
 }
 
 .switch input:checked+span:before {

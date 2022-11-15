@@ -20,7 +20,7 @@ class LoginController {
           'cache' => '/path/to/compilation_cache',
           'auto_reload' => true
         ]);
-        return $template->render(['error' => $_SESSION['error_msg'] ?? null]);
+        return $template->render(['error' => $this->valError]);
     }
 
     public function check() {

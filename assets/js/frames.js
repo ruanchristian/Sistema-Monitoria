@@ -44,84 +44,16 @@ const imgs = [
     "https://apiregistrofotografico.seduc.ce.gov.br/api/registrofotografico/aluno/4662228?code=ce73ce860cefb105c5b4b3883396a8b212628e912e0522b4cc0223db79dd1d2a"
 ]
 
-const alunos = [
-    "AFONSO VITO DE LIGORIO GALDINO",
-    "ANTONIO WALLISON NOBRE DE MORAIS",
-    "ARTHUR ALVES DEDEUS",
-    "CAIO ADSON OLIVEIRA PIMENTEL",
-    "ERICK JARDEL DA SILVA FERREIRA",
-    "ERIKA VITORYA DA SILVA CRUZ",
-    "EVANICE DO CARMO OLIVEIRA",
-    "FRANCIELLY SIMPLICIO MENDES",
-    "FRANCISCA BRUNA CARNEIRO LOPES",
-    "FRANCISCO RAUAN ALVES DA SILVA",
-    "HALYSON DEYVISON LIMA NUNES",
-    "HEITOR PIMENTA GOTZ",
-    "HENRIQUE BARBOSA DE VASCONCELOS NETO",
-    "HIAGO LEONARDO FERNANDES COUTINHO",
-    "JAMILE GOMES DA SILVA",
-    "JOAO PEDRO VIEIRA DE ARAUJO",
-    "JOAO RICARDO THAUMATURGO TOMAZ ROLIM",
-    "JOSE LUIS ALVES DE MORAIS",
-    "KAENIO FELLIPY ARAUJO SILVA",
-    "KAIO DA SILVA PEREIRA",
-    "KAUAN RODRIGUES OLIVEIRA",
-    "LEANDERSON RICART PASCOAL FEIJAO",
-    "LIVIA CIBELLE MACIEL DANTAS",
-    "LUIS FELIPE BATISTA DE ARAUJO",
-    "MARIA EDUARDA DA SILVA BRILHANTE",
-    "MARIA GEOVANNA BEZERRA LIMA",
-    "MARIANA PATRICIO DE SOUSA",
-    "MATEUS FARIAS DUARTE",
-    "MATHEUS PEREIRA DA SILVA",
-    "MICHEL BARBOSA BRASIL",
-    "NARA LENE DA SILVA FREIRES",
-    "NATAN RODRIGUES LOPES",
-    "OHANNA ELUNY DE SOUSA FERREIRA",
-    "PEDRO HENRIQUE MARTINS DE SOUZA",
-    "PIERRY PATRICIO EZEQUIEL",
-    "RAYNA LAIS LEAL DA SILVA",
-    "RAYSSA OLIVEIRA DE SOUSA",
-    "RENATA SILVA MACHADO",
-    "RUAN CHRISTIAN FERNANDES DE SOUSA",
-    "SHYLEI RITA DO NASCIMENTO ANDRADE",
-    "VICTOR HUGO MACIEL TEOTONIO",
-    "VICTOR MIGUEL DA SILVA LIMA",
-    "VINICIUS DE SOUSA NOGUEIRA"
-]
-
-function criarRelacao(value) {
-    let cardRef = document.querySelector('.card-text');
-    let card = document.querySelector('.card');
-    let errorField = document.getElementById('error');
-    let btnSend = document.querySelector('.sendAll');
-    cardRef.innerHTML = "";
-
-    switch (value) {
-        case '2º B - Informática':
-            errorField.innerHTML = ""
-            card.style.visibility = 'visible';
-            btnSend.style.visibility = 'visible';
-            cardRef.innerHTML = "";
-
-            for (let i = 0; i < alunos.length; i++) {
-                cardRef.innerHTML += `<img style="width: 150px; display: inline-block;" src="${imgs[i]}">`
-                cardRef.innerHTML += `<p style="color: green; display: inline-block; padding: 7px;" class="font-weight-bold">${alunos[i]}</p>`
-                cardRef.innerHTML += `<small class="user-select-none"> (${i + 1}) </small><br><br>`
-                cardRef.innerHTML += "<label class='switch'><input type='checkbox'><span></span></label><hr>"
-            }
-            break;
-        default:
-            errorField.style.visibility = 'visible';
-            card.style.visibility = "hidden";
-            btnSend.style.visibility = 'hidden';
-            errorField.innerHTML =
-                `<div style="margin: auto;" class="alert alert-danger">
-                    ${value} ainda não está cadastrado no banco
-                </div>`;
-            break;
+const changeState = (checkbox, p) => {
+    let state = document.getElementById(p);
+    if(checkbox.checked) {
+        state.innerHTML = "Faltou";
+        state.style.color = "red";
+    } else {
+        state.innerHTML = "Presente";
+        state.style.color = "black";
     }
-}
+  }
 
 function forceOp() {
     //Função que vai forçar o usuário a digitar somente números no input text.

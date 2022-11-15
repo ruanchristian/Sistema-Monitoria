@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -16,11 +16,16 @@
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
 
     <!-- Font Awesome LIB -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js"
+        integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -30,63 +35,72 @@
     <div class="text-center">
         <i id="iconCheck" class="fas fa-check"></i>
         <h5 class="text-white d-inline text-decoration-underline">Frequência - Chamada</h5>
-        <div class="container">
-            <div class="row mb-3 mt-2 mx-auto">
-                <div class="col-md">
-                    <div class="form-floating">
-                        <input disabled type="date" value="{{date}}" class="form-control" id="dateField">
-                        <label for="floatingInputGrid">Data</label>
+        <form method="POST" action="frequencia/getAlunosByTurma">
+            <div class="container">
+                <div class="row mb-3 mt-2 mx-auto">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input disabled type="date" value="{{date}}" class="form-control" id="dateField">
+                            <label for="floatingInputGrid">Data:</label>
+                        </div>
                     </div>
-                </div>
-                <div class="col2 col-md">
-                    <div class="form-floating">
-                        <select class="form-select text-truncate" id="selectTurma">
-                            <optgroup label="1º Séries">
-                            <optgroup label="1º Séries">
-                                <option value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
-                                <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
-                                <option value="1º C - Informática">1° C - INFORMÁTICA</option>
-                                <option value="1º D - Nutrição">1° D - NUTRIÇÃO</option>
-                            </optgroup>
-                            <optgroup label="2º Séries">
-                                <option value="2º A - Edificações">2° A - EDIFICAÇÕES</option>
-                                <option value="2º B - Informática">2° B - INFORMÁTICA</option>
-                                <option value="2º C - Logistíca">2° C - LOGÍSTICA</option>
-                                <option value="2º D - Nutrição">2° D - NUTRIÇÃO</option>
-                            </optgroup>
-                            </optgroup>
-                        </select>
-                        <label for="selectTurma">Selecione a turma</label>
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <select name="frequenciaSelect" class="form-select text-truncate" id="selectTurma">
+                                <optgroup label="1º Séries">
+                                    <option selected value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
+                                    <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
+                                    <option value="1º C - Informática">1° C - INFORMÁTICA</option>
+                                    <option value="1º D - Nutrição">1° D - NUTRIÇÃO</option>
+                                </optgroup>
+                                <optgroup label="2º Séries">
+                                    <option value="2º A - Edificações">2° A - EDIFICAÇÕES</option>
+                                    <option value="2º B - Informática">2° B - INFORMÁTICA</option>
+                                    <option value="2º C - Logistíca">2° C - LOGÍSTICA</option>
+                                    <option value="2º D - Nutrição">2° D - NUTRIÇÃO</option>
+                                </optgroup>
+                            </select>
+                            <label for="selectTurma">Selecione a turma:</label>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <button id="btnSearchCurrent" class="btn btn-dark btn-sm">
-            <i class="fas fa-search"></i>
-            Buscar Alunos
-        </button>
+            <button id="btnSearchCurrent" type="submit" class="btn btn-dark">
+                <i class="fas fa-search"></i>
+                Buscar Alunos
+            </button>
     </div>
+    </form>
+
+    {% if alunos %}
     <hr>
-
-    <div class="d-flex mx-auto d-block" style="width: 25%;" id="error"></div>
-
-    <div style="visibility: hidden;" class="cardAlunos card w-75 mx-auto d-block">
+    <div class="cardAlunos card w-75 mx-auto d-block">
         <div class="card-body">
-            <h4>Lista de alunos (demonstração)</h4>
+            <h4>Lista de alunos - {{turma}}</h4>
             <hr>
-            <p class="card-text"></p>
+            <p class="card-text">
+                {% for aluno in alunos['list'] %}
+                 <i class="fas fa-user"></i>
+                  <span class="d-inline"> {{aluno['nome']}} - </span>
+                  <small class="user-select-none"> ({{aluno['matricula']}})</small><br>
+                  <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
+                  <span id="{{aluno['id']}}" class="float-end">Presente</span>
+                  <hr>
+                {% endfor %}
+            </p>
             <button class="sendAll btn btn-success mx-auto d-block">
                 <i class="fas fa-upload"></i>
                 Enviar frequência
             </button>
         </div>
     </div>
+    {% endif %}
 
     <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Aguarde...</h5>
+                    <h5 class="modal-title" id="modalLabel">Carregando lista...</h5>
                 </div>
                 <div class="modal-body mx-auto d-block">
                     <div class="d-flex justify-content-center">
@@ -108,7 +122,8 @@
                     </div>
                     <div class="modal-body mx-auto d-block">
                         <div class="d-flex justify-content-center">
-                            <input required maxlength="17" class="form-control" data-ng-trim="false" name="pass" type="password" id="passF" placeholder="Insira sua senha">
+                            <input required maxlength="17" class="form-control" data-ng-trim="false" name="pass"
+                                type="password" id="passF" placeholder="Insira sua senha">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -122,13 +137,12 @@
 </body>
 
 <script>
-    var selectField = document.getElementById('selectTurma');
 
     $('#btnSearchCurrent').click(() => {
         $('#modalSpin').modal('show');
-        setTimeout(function() {
+        setTimeout(function () {
             $('#modalSpin').modal('hide');
-            criarRelacao(selectField.value);
+            console.log('Searching...');
         }, 500);
     });
 

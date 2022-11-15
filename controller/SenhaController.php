@@ -7,8 +7,7 @@ class SenhaController {
     $this->valError = $_SESSION['error_msg'] ?? null;
     $this->isReset = $_SESSION['success'] ?? null;
 
-    if($this->isReset && $this->isReset['contador'] == 1) unset($_SESSION['success']);
-    
+    if($this->isReset && $this->isReset['contador'] == 1) unset($_SESSION['success']);    
     if ($this->valError && $this->valError['contador'] == 1) unset($_SESSION['error_msg']);
   }
 

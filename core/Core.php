@@ -8,7 +8,7 @@ class Core {
   private $monitor;
 
   public function __construct() {
-    $this->monitor = $_SESSION['access'] ?? null;
+    $this->monitor = $_SESSION['access'] ?? NULL;
   }
 
   public function power($request) {
@@ -27,7 +27,7 @@ class Core {
         }
       }
     }
-    
+
     if ($this->monitor) {
       $permissions = ["HomeController", "FrequenciaController", "SenhaController"];
       if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
