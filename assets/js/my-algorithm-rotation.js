@@ -67,11 +67,7 @@ function rotation(current) {
                 i++
                 break;
 
-            case "s-2":
-                if (dias[i] == "Quarta") {
-                    i++;
-                    continue;
-                } 
+            case "s-2": 
                 miniTitle.innerText = "Cronograma - Semana 2";
                 equipesArrayReversed = reverseArray(matrizEquipes);
                 showReverse(i, table, equipesArrayReversed);

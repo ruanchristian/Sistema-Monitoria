@@ -24,7 +24,7 @@ class FrequenciaController {
           'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'date' => date("Y-m-d", time()),
           'alunos' => $this->alunos,
-          'error' => $this->error
+          'error' => $this->error,
         ]);
     }
 

@@ -46,14 +46,14 @@ const imgs = [
 
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);
-    if(checkbox.checked) {
+    if (checkbox.checked) {
         state.innerHTML = "F";
         state.style.color = "red";
     } else {
         state.innerHTML = "P";
         state.style.color = "black";
     }
-  }
+}
 
 function forceOp() {
     //Função que vai forçar o usuário a digitar somente números no input text.

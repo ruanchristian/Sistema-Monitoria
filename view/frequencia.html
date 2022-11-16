@@ -76,7 +76,7 @@
     <hr>
     <div class="cardAlunos card w-75 mx-auto d-block">
         <div class="card-body">
-            <h4>Lista de alunos - {{turma}}</h4>
+            <h3>Lista de alunos <h6>({{alunos['list'][0]['turma']}})</h6></h3>
             <hr>
             <p class="card-text">
                 {% for aluno in alunos['list'] %}
@@ -143,7 +143,7 @@
         setTimeout(function () {
             $('#modalSpin').modal('hide');
             console.log('Searching...');
-        }, 500);
+        }, 1500);
     });
 
     $('.sendAll').click(() => {
