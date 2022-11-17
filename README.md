@@ -16,6 +16,6 @@
 
   <br>
 
-<span style='float: right'>
+<span>
     <b>Developed by Ruan Christian &copy; | EEEPJAS ❤ 2022<b>
 </span>  

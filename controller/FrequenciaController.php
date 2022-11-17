@@ -31,7 +31,7 @@ class FrequenciaController {
     public function getAlunosByTurma() {
       try {
        $turma = $_POST['frequenciaSelect'];
-       $_SESSION['alunos'] = ['list' => $this->retrieveAllAlunos($turma), 'counter' => 1];
+       $_SESSION['alunos'] = ['list' => FrequenciaController::retrieveAllAlunos($turma), 'counter' => 1];
        header('Location: /Sistema Monitoria/frequencia');
       } catch(Exception $e) {
         $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
@@ -39,7 +39,7 @@ class FrequenciaController {
       }
     }
 
-    private function retrieveAllAlunos($turma) {
+    public static function retrieveAllAlunos($turma) {
       $pdo = Connection::getConnection();
       $statement = $pdo->prepare("SELECT * FROM alunos WHERE turma = ?");
       $statement->execute(array($turma));
