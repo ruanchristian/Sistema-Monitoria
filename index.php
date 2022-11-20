@@ -7,7 +7,6 @@
   require_once("controller/HomeController.php");
   require_once("controller/FrequenciaController.php");
   require_once("controller/SenhaController.php");
-  require_once("controller/AlunosController.php");
   require_once("model/Manager.php");
   require_once("vendor/autoload.php");
 

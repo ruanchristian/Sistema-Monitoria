@@ -2,156 +2,154 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.M.L - Início</title>
-    <!-- Bootstrap CSS and JS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Dashboard do Sistema" />
+    <meta name="author" content="Ruan Christian" />
+    <title>Dashboard</title>
+    <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="/Sistema Monitoria/assets/styles/styles.css" rel="stylesheet" />
+    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+        {% include 'template-menu.html' %}
+        
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Sistema de monitoria dos laboratórios</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-primary bg-gradient text-white mb-4">
+                                <div class="card-body">
+                                    <i class="fas fa-users"></i>
+                                    Alunos
+                                    <h3>587</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-warning bg-gradient text-white mb-4">
+                                <div class="card-body">
+                                    <i class="fas fa-crown"></i>
+                                    Monitores
+                                    <h3>{{tot}}</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-success bg-gradient text-white mb-4">
+                                <div class="card-body">
+                                    <i class="fas fa-code"></i>
+                                    Administradores
+                                    <h3>2</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card bg-danger bg-gradient text-white mb-4">
+                                <div class="card-body">
+                                    <i class="fas fa-calendar"></i>
+                                    Ocorrências
+                                    <h3>7</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    Verifique a monitoria da semana
+                                </div>
+                                <div class="card-body"></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-code me-1"></i>
+                                    Administradores do Sistema
+                                </div>
+                                <div class="card-body">
+                                    <ul>
+                                        <li>ADMIN 1</li>
+                                        <li>ADMIN 2</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="alunos" class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            Tabela de Alunos
+                        </div>
+                        <div class="card-body">
+                            <table id="datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Matrícula</th>
+                                        <th>Nome</th>
+                                        <th>Turma</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                             {% for aluno in alunos['list'] %}
+
+                                {% if aluno['matricula'] in monitores %}
+
+                                <tr>
+                                    <th>{{ aluno['matricula'] }}</th>
+                                    <td>{{ aluno['nome'] }} <img width="20px" src="/Sistema Monitoria/assets/img/icon-verified-48.png"> </td>
+                                    <td>{{ aluno['turma'] }}</td>
+                                </tr>
+
+                                    {% else %}
+
+                                <tr>
+                                    <th>{{ aluno['matricula'] }}</th>
+                                    <td>{{ aluno['nome'] }}</td>
+                                    <td>{{ aluno['turma'] }}</td>
+                                </tr>
+
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Created by &copy; <strong>
+                                <a class="text-decoration-none" target="_blank"
+                                    href="https://www.instagram.com/ruanchristian7/">Ruan Christian</a>
+                            </strong>
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
-
-    <!-- My Custom CSS and JS file -->
-    <link href="/Sistema Monitoria/assets/styles/manager-style.css" rel="stylesheet">
-    <link href="/Sistema Monitoria/assets/styles/cronograma.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
-    <script src="/Sistema Monitoria/assets/js/my-algorithm-rotation.js"></script>
-    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
-
-    <!-- lib PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-    <!-- Font Awesome LIB -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js"
-        integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-</head>
-
-<body>
-    {% include 'template-menu.html' %}
-
-    <div class="infos text-center text-white">
-        <h2>Sistema de Monitoria dos Laboratórios</h2>
-        <small>Verificar monitoria semanal</small><br>
-        <select id="selectField">
-            <option value="s-1">Semana 1</option>
-            <option value="s-2">Semana 2</option>
-            <option value="s-3">Semana 3</option>
-        </select><br><br>
-        <button data-bs-toggle="modal" data-bs-target="#myModal" id="viewInfoBtn" class="btn btn-dark">
-            Verificar
-        </button><br>
-    </div>
-
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Verifique o cronograma</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="c26 doc-content">
-                        <p class="c15">
-                            <img src="/Sistema Monitoria/assets/img/eeepjas-icon.png"
-                                style="width: 120px; height: fit-content">
-                        </p>
-                        <p class="c15"><span class="c17">Alunos Monitores do dia</span></p>
-                        <p class="c15"><span id="cron" class="c20">Cronograma</span></p>
-                        <p class="c14"><span class="c20"></span></p><a
-                            id="t.8c706dbf1a5943b7d5c03587dcd8ad326b92248c"></a><a id="t.0"></a>
-                        <table class="c19"></table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button id="pdfDownload" type="button" class="btn btn-primary">Fazer download em PDF</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="toast-container bottom-0 end-0 p-3">
-        <div class="toast">
-            <div class="toast-header">
-                <img width="12%" src="/Sistema Monitoria/assets/img/infortec2b-icon.png" class="rounded me-2">
-                <strong class="me-auto">2º B - Informática</strong>
-                <small>Agora</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Bem vindo ao sistema!<br>
-                Total de monitores: {{tot}}
-            </div>
-        </div>
-    </div>
-
-    <script>
-        let myAlert = document.querySelector('.toast');
-        let bsAlert = new bootstrap.Toast(myAlert).show();
-    </script>
-
-    <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Baixando o pdf...</h5>
-                </div>
-                <div class="modal-body mx-auto d-block">
-                    <div class="d-flex justify-content-center">
-                        <div style="width: 3rem; height: 3rem;" class="spinner-border"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 </body>
-
-<script>
-    let btn = document.getElementById('viewInfoBtn');
-    let selectReference = document.getElementById('selectField');
-    let userField = document.getElementById('userAcc');
-
-    const body = document.querySelector(".c26");
-
-    $('#pdfDownload').click(() => {
-        $('#modalSpin').modal('show');
-        $('#myModal').modal('hide');
-        setTimeout(function () {
-            $('#modalSpin').modal('hide');
-            let options = {
-                margin: 1,
-                filename: 'Cronograma.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 1
-                },
-                html2canvas: {
-                    scale: 2
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'letter',
-                    orientation: 'portrait'
-                }
-            };
-            html2pdf().set(options).from(body).save();
-        }, 600);
-    });
-
-    btn.addEventListener('click', () => {
-        rotation(selectReference.value);
-    })
-</script>
-
 </html>

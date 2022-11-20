@@ -1,3 +1,24 @@
+$(document).ready(function () {
+    $('#datatable').DataTable({
+        language : {
+            url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
+        }
+    })
+});
+
+window.addEventListener('DOMContentLoaded', e => {
+
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', e => {
+            e.preventDefault();
+            document.body.classList.toggle('sb-sidenav-toggled');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+        });
+    }
+});
+
+
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);
     if (checkbox.checked) {
