@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/chamada.css">
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 
+    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
         integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
@@ -82,7 +84,7 @@
                 {% for aluno in alunos['list'] %}
                  <i class="fas fa-user"></i>
                   <span class="d-inline"> {{aluno['nome']}} - </span>
-                  <small class="user-select-none"> ({{aluno['matricula']}})</small><br>
+                  <small> ({{aluno['matricula']}})</small><br>
                   <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
                   <span id="{{aluno['id']}}" class="float-end">P</span>
                   <hr>

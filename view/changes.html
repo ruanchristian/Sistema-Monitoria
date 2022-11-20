@@ -14,6 +14,8 @@
     <link href="/Sistema Monitoria/assets/styles/manager-style.css" rel="stylesheet">
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
     <script src="/Sistema Monitoria/assets/js/my-algorithm-rotation.js"></script>
+    
+    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
@@ -29,13 +31,14 @@
 
     <form class="formPChange text-center" method="POST" action="senha/reset">
         {% if error %}
-        <div class="alert alert-danger mx-auto w-25">
+        <div class="alert alert-success mx-auto w-50 alert-dismissible fade show text-white bg-danger bg-gradient">
             {{error['msg']}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
         {% endif %}
 
         {% if isReseted %}
-        <div class="alert alert-success mx-auto w-25 alert-dismissible fade show mt-4">
+        <div class="alert alert-success mx-auto w-50 alert-dismissible fade show bg-success text-white bg-gradient mt-4">
             {{isReseted['msg']}}
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
           </div>

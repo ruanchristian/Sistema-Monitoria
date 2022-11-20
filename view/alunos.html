@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/manager-style.css">
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 
+    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
+
     <!-- Font Awesome LIB -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -68,16 +70,28 @@
             </tr>
         </thead>
         <tbody>
-            {% for aluno in alunos['list'] %}
+        {% for aluno in alunos['list'] %}
+
+            {% if aluno['matricula'] in monitores %}
+
             <tr>
-                <th>{{aluno['matricula']}}</th>
-                <td>{{aluno['nome']}}</td>
-                <td>{{aluno['turma']}}</td>
+                <th>{{ aluno['matricula'] }}</th>
+                <td>{{ aluno['nome'] }} <img width="20px" src="/Sistema Monitoria/assets/img/icon-verified-48.png"> </td>
+                <td>{{ aluno['turma'] }}</td>
             <tr>
-                {% endfor %}
+    
+            {% else %}
+
+            <tr>
+                <th>{{ aluno['matricula'] }}</th>
+                <td>{{ aluno['nome'] }}</td>
+                <td>{{ aluno['turma'] }}</td>
+            <tr>
+
+            {% endif %}
+        {% endfor %}
         </tbody>
     </table>
     {% endif %}
 </body>
-
 </html>

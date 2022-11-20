@@ -20,6 +20,15 @@ class Manager {
         throw new \Exception("Matrícula ou senha inválidas");
     }
 
+    public static function getAllManagers() {
+        $pdo = Connection::getConnection();
+        $stmt = $pdo->prepare("SELECT matricula FROM monitores ORDER BY nome");
+        $stmt->execute();
+
+        $array = $stmt->fetchAll();
+        return array_column($array, 'matricula');
+    }
+
     public function changePassword($pass1, $pass2, $currentPass) {
         $pdo = Connection::getConnection();
         $matricula = $_SESSION['access']['matricula'];
