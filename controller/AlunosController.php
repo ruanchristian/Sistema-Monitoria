@@ -27,14 +27,7 @@
     }
 
     public function recv() {
-       try {
         $turma = $_POST['select'];
-        $arrayAlunos = FrequenciaController::retrieveAllAlunos($turma);
-        $_SESSION['alunos'] = ['list' => $arrayAlunos, 'counter' => 1];
-        header('Location: /Sistema Monitoria/alunos');
-      } catch(Exception $e) {
-        $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
-        header('Location: /Sistema Monitoria/alunos');
-      }
+        FrequenciaController::getAlunosByTurma($turma, "/Sistema Monitoria/alunos");
     }
    }

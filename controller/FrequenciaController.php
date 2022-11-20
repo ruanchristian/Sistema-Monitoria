@@ -28,18 +28,22 @@ class FrequenciaController {
         ]);
     }
 
-    public function getAlunosByTurma() {
-      try {
+    public function search() {
        $turma = $_POST['frequenciaSelect'];
-       $_SESSION['alunos'] = ['list' => FrequenciaController::retrieveAllAlunos($turma), 'counter' => 1];
-       header('Location: /Sistema Monitoria/frequencia');
+       FrequenciaController::getAlunosByTurma($turma, "/Sistema Monitoria/frequencia");
+    }
+
+    public static function getAlunosByTurma($turma, $path) {
+      try {
+       $_SESSION['alunos'] = ['list' => (new self)->retrieveAllAlunos($turma), 'counter' => 1];
+       header('Location: '. $path);
       } catch(Exception $e) {
         $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
-        header('Location: /Sistema Monitoria/frequencia');
+        header('Location: '. $path);
       }
     }
 
-    public static function retrieveAllAlunos($turma) {
+    private function retrieveAllAlunos($turma) {
       $pdo = Connection::getConnection();
       $statement = $pdo->prepare("SELECT * FROM alunos WHERE turma = ?");
       $statement->execute(array($turma));
