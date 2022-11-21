@@ -11,6 +11,7 @@
       $this->alunos = $_SESSION['alunos'] ?? null;
 
       $this->monitores = Manager::getAllManagers();
+
       $this->totalMonitores = $this->getCount("monitores");
       $this->totalAlunos = $this->getCount("alunos");
     }

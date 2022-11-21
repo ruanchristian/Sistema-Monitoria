@@ -20,6 +20,18 @@ window.addEventListener('DOMContentLoaded', e => {
     }
 });
 
+$('#btnSearchCurrent').click(() => {
+    $('#modalSpin').modal('show');
+    setTimeout(function () {
+        $('#modalSpin').modal('hide');
+        console.log('Searching...');
+    }, 1500);
+});
+
+$('.sendAll').click(() => {
+    $('#passConfirm').modal('show');
+});
+
 const body = document.querySelector(".c26");
 
 $('#pdfDownload').click(() => {

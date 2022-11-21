@@ -6,9 +6,9 @@ class FrequenciaController {
 
     public function __construct() {
       $this->error = $_SESSION['error_msg'] ?? null;
-      $this->alunos = $_SESSION['alunos'] ?? null;
+      $this->alunos = $_SESSION['students'] ?? null;
 
-      if($this->alunos && $_SESSION['alunos']['counter'] == 1) unset($_SESSION['alunos']);
+      if($this->alunos && $_SESSION['students']['counter'] == 1) unset($_SESSION['students']);
       if($this->error && $_SESSION['error_msg']['contador'] == 1) unset($_SESSION['error_msg']);
     }
 
@@ -35,7 +35,7 @@ class FrequenciaController {
 
     public static function getAlunosByTurma($turma, $path) {
       try {
-       $_SESSION['alunos'] = ['list' => (new self)->retrieveAllAlunos($turma), 'counter' => 1];
+       $_SESSION['students'] = ['list' => (new self)->retrieveAllAlunos($turma), 'counter' => 1];
        header('Location: '. $path);
       } catch(Exception $e) {
         $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
@@ -48,7 +48,7 @@ class FrequenciaController {
       $statement = $pdo->prepare("SELECT * FROM alunos WHERE turma = ?");
       $statement->execute(array($turma));
 
-      if(!$statement->rowCount() > 0) throw new Exception("Opção inválida");
+      if(!$statement->rowCount() > 0) throw new Exception("Turma não cadastrada no banco de dados.");
       return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

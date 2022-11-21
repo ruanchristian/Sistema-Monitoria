@@ -5,21 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S.M.L - Chamada</title>
+    <title>Chamada</title>
     <!-- Bootstrap CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
     <!-- My Custom CSS and JS file -->
-    <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/manager-style.css">
+    <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/styles.css">
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/chamada.css">
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 
     <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
-        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
 
     <!-- Font Awesome LIB -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -30,127 +29,135 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
-<body>
+<body class="sb-nav-fixed">
 
     {% include 'template-menu.html' %}
 
-    <div class="text-center">
-        <i id="iconCheck" class="fas fa-check"></i>
-        <h5 class="text-white d-inline text-decoration-underline">Frequência - Chamada</h5>
-        <form method="POST" action="frequencia/search">
-            <div class="container">
-                <div class="row mb-3 mt-2 mx-auto">
-                    <div class="col-md mb-2">
-                        <div class="form-floating">
-                            <input disabled type="date" value="{{date}}" class="form-control" id="dateField">
-                            <label for="floatingInputGrid">Data:</label>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <div class="text-center mt-4">
+                    <i id="iconCheck" class="fas fa-check"></i>
+                    <h5 class="d-inline text-decoration-underline">Frequência - Chamada</h5>
+                    <form method="POST" action="frequencia/search">
+                        <div class="container mt-4">
+                            <div class="row mb-3 mt-2 mx-auto">
+                                <div class="col-md mb-2">
+                                    <div class="form-floating">
+                                        <input disabled type="date" value="{{date}}" class="form-control" id="dateField">
+                                        <label for="floatingInputGrid">Data:</label>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <select name="frequenciaSelect" class="form-select text-truncate" id="selectTurma">
+                                            <optgroup label="1º Séries">
+                                                <option selected value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
+                                                <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
+                                                <option value="1º C - Informática">1° C - INFORMÁTICA</option>
+                                                <option value="1º D - Nutrição">1° D - NUTRIÇÃO</option>
+                                            </optgroup>
+                                            <optgroup label="2º Séries">
+                                                <option value="2º A - Edificações">2° A - EDIFICAÇÕES</option>
+                                                <option value="2º B - Informática">2° B - INFORMÁTICA</option>
+                                                <option value="2º C - Logistíca">2° C - LOGÍSTICA</option>
+                                                <option value="2º D - Nutrição">2° D - NUTRIÇÃO</option>
+                                            </optgroup>
+                                        </select>
+                                        <label for="selectTurma">Selecione a turma:</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button id="btnSearchCurrent" type="submit" class="btn btn-dark">
+                            <i class="fas fa-search"></i>
+                            Buscar Alunos
+                        </button>
+                </div>
+                </form>
+            
+                {% if alunos %}
+                <hr>
+                <form method="POST" action="">
+                <div class="cardAlunos card w-75 mx-auto d-block">
+                    <div class="card-body">
+                        <h3>Lista de alunos <h6>({{alunos['list'][0]['turma']}})</h6></h3>
+                        <hr>
+                        <p class="card-text">
+                            {% for aluno in alunos['list'] %}
+                             <i class="fas fa-user"></i>
+                              <span class="d-inline"> {{aluno['nome']}} - </span>
+                              <small> ({{aluno['matricula']}})</small><br>
+                              <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
+                              <span id="{{aluno['id']}}" class="float-end">P</span>
+                              <hr>
+                            {% endfor %}
+                        </p>
+                        <button class="sendAll btn btn-success mx-auto d-block">
+                            <i class="fas fa-upload"></i>
+                            Enviar frequência
+                        </button>
                     </div>
-                    <div class="col-md">
-                        <div class="form-floating">
-                            <select name="frequenciaSelect" class="form-select text-truncate" id="selectTurma">
-                                <optgroup label="1º Séries">
-                                    <option selected value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
-                                    <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
-                                    <option value="1º C - Informática">1° C - INFORMÁTICA</option>
-                                    <option value="1º D - Nutrição">1° D - NUTRIÇÃO</option>
-                                </optgroup>
-                                <optgroup label="2º Séries">
-                                    <option value="2º A - Edificações">2° A - EDIFICAÇÕES</option>
-                                    <option value="2º B - Informática">2° B - INFORMÁTICA</option>
-                                    <option value="2º C - Logistíca">2° C - LOGÍSTICA</option>
-                                    <option value="2º D - Nutrição">2° D - NUTRIÇÃO</option>
-                                </optgroup>
-                            </select>
-                            <label for="selectTurma">Selecione a turma:</label>
+                </div>
+            </form>
+                
+                {% elseif error %} 
+ 
+                <div class="row">
+                <div class="alert alert-danger alert-dismissible fade show bg-danger bg-gradient col-md-4 col-md-offset-4 mx-auto mt-4" role="alert">
+                    {{error['msg']}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>
+                </div>
+
+                {% endif %}
+            
+                <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalLabel">Carregando lista...</h5>
+                            </div>
+                            <div class="modal-body mx-auto d-block">
+                                <div class="d-flex justify-content-center">
+                                    <div style="width: 3rem; height: 3rem;" class="spinner-border">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="btnSearchCurrent" type="submit" class="btn btn-dark">
-                <i class="fas fa-search"></i>
-                Buscar Alunos
-            </button>
-    </div>
-    </form>
-
-    {% if alunos %}
-    <hr>
-    <div class="cardAlunos card w-75 mx-auto d-block">
-        <div class="card-body">
-            <h3>Lista de alunos <h6>({{alunos['list'][0]['turma']}})</h6></h3>
-            <hr>
-            <p class="card-text">
-                {% for aluno in alunos['list'] %}
-                 <i class="fas fa-user"></i>
-                  <span class="d-inline"> {{aluno['nome']}} - </span>
-                  <small> ({{aluno['matricula']}})</small><br>
-                  <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
-                  <span id="{{aluno['id']}}" class="float-end">P</span>
-                  <hr>
-                {% endfor %}
-            </p>
-            <button class="sendAll btn btn-success mx-auto d-block">
-                <i class="fas fa-upload"></i>
-                Enviar frequência
-            </button>
-        </div>
-    </div>
-    {% endif %}
-
-    <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel">Carregando lista...</h5>
-                </div>
-                <div class="modal-body mx-auto d-block">
-                    <div class="d-flex justify-content-center">
-                        <div style="width: 3rem; height: 3rem;" class="spinner-border">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <form method="POST" action="">
-        <div id="passConfirm" class="modal fade" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
+        </main>
+        <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Confirme sua senha:</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <h5 class="modal-title" id="modalLabel">Baixando em pdf...</h5>
                     </div>
                     <div class="modal-body mx-auto d-block">
                         <div class="d-flex justify-content-center">
-                            <input required maxlength="17" class="form-control" data-ng-trim="false" name="pass"
-                                type="password" id="passF" placeholder="Insira sua senha">
+                            <div style="width: 3rem; height: 3rem;" class="spinner-border"></div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button class="btn btn-primary">Enviar tudo</button>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-</body>
-
-<script>
-
-    $('#btnSearchCurrent').click(() => {
-        $('#modalSpin').modal('show');
-        setTimeout(function () {
-            $('#modalSpin').modal('hide');
-            console.log('Searching...');
-        }, 1500);
-    });
-
-    $('.sendAll').click(() => {
-        $('#passConfirm').modal('show');
-    });
-</script>
-
+        
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Created by &copy; <strong>
+                            <a class="text-decoration-none" target="_blank"
+                                href="https://www.instagram.com/ruanchristian7/">Ruan Christian</a>
+                        </strong>
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </body>
 </html>

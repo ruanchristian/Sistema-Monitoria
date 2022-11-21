@@ -22,7 +22,7 @@ class Manager {
 
     public static function getAllManagers() {
         $pdo = Connection::getConnection();
-        $stmt = $pdo->prepare("SELECT matricula FROM monitores ORDER BY nome");
+        $stmt = $pdo->prepare("SELECT matricula FROM monitores");
         $stmt->execute();
 
         $array = $stmt->fetchAll();
