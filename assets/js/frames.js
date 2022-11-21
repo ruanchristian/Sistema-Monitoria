@@ -1,7 +1,8 @@
 $(document).ready(function () {
+    rotation('s-2');
     $('#datatable').DataTable({
         order: [[1, 'asc'], [2, 'asc']],
-        language : {
+        language: {
             url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
         }
     })
@@ -19,6 +20,32 @@ window.addEventListener('DOMContentLoaded', e => {
     }
 });
 
+const body = document.querySelector(".c26");
+
+$('#pdfDownload').click(() => {
+    console.log(body);
+    $('#modalSpin').modal('show');
+    setTimeout(function () {
+        $('#modalSpin').modal('hide');
+        let options = {
+            margin: 1,
+            filename: 'Cronograma.pdf',
+            image: {
+                type: 'png'
+            },
+            html2canvas: {
+                scale: 2,
+                scrollY: 0
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
+        html2pdf().set(options).from(body).save();
+    }, 600);
+});
 
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);

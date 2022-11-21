@@ -2,6 +2,7 @@
 
   class HomeController {
     private $totalMonitores = 0;
+    private $totalAlunos = 0;
     private $alunos;
     private $monitores;
 
@@ -10,7 +11,8 @@
       $this->alunos = $_SESSION['alunos'] ?? null;
 
       $this->monitores = Manager::getAllManagers();
-      $this->totalMonitores = $this->getCount();
+      $this->totalMonitores = $this->getCount("monitores");
+      $this->totalAlunos = $this->getCount("alunos");
     }
 
     public function onCreate() {
@@ -25,7 +27,8 @@
           'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'alunos' => $this->alunos,
           'monitores' => $this->monitores,
-          'tot' => $this->totalMonitores
+          'totalMonitores' => $this->totalMonitores,
+          'totalAlunos' => $this->totalAlunos
         ]);
     }
 
@@ -37,9 +40,9 @@
       $_SESSION['alunos'] = ['list' => $statement->fetchAll(PDO::FETCH_ASSOC)];
     }
 
-    private function getCount() {
+    private function getCount($table) {
       $pdo = Connection::getConnection();
-      $statement = $pdo->prepare("SELECT COUNT(*) as total FROM monitores");
+      $statement = $pdo->prepare("SELECT COUNT(*) as total FROM {$table}");
       $statement->execute();
 
       return $statement->fetch()['total'];

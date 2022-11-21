@@ -19,10 +19,15 @@ body {
   height: 100%;
 }
 
+#pdfDownload {
+  padding-right: 0.705rem;
+}
+
 #layoutSidenav {
   display: flex;
 }
 #layoutSidenav #layoutSidenav_nav {
+  position: fixed;
   flex-basis: 225px;
   flex-shrink: 0;
   transition: transform 0.15s ease-in-out;

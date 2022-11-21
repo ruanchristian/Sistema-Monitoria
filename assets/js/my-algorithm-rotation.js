@@ -12,7 +12,6 @@ function rotation(current) {
     let table = document.querySelector('.c19');
     let miniTitle = document.getElementById('cron');
 
-    table.innerHTML = "";
     table.innerHTML = `
     <tr class="c2">
     <td class="c27" colspan="3" rowspan="1">
@@ -43,6 +42,7 @@ function rotation(current) {
             case "s-1":
                 miniTitle.innerText = "Cronograma - Semana 1";
                 table.innerHTML += `
+                <tbody>
                 <td class="c23" colspan="1" rowspan="1">
                 <ul class="c10">
                     <li class="c3 li-bullet-0"><span class="c8">&#9633; ${matrizEquipes[i][duplasIndex++]}</span></li>
@@ -62,7 +62,7 @@ function rotation(current) {
             </td>
             <td class="c16" colspan="1" rowspan="1">
                 <p class="c7"><span class="c0">${dias[i]}</span></p>
-            </td>`;
+            </td> </tbody>`;
                 duplasIndex = 0;
                 i++
                 break;
@@ -117,6 +117,7 @@ function showReverse(index, tableRef, matriz) {
     duplasIndex = 0;
 
     tableRef.innerHTML += `
+              <tbody>
                 <td class="c23" colspan="1" rowspan="1">
                 <ul class="c10">
                     <li class="c3 li-bullet-0"><span class="c8">&#9633; ${matriz[index][2]}</span></li>
@@ -136,6 +137,6 @@ function showReverse(index, tableRef, matriz) {
             </td>
             <td class="c16" colspan="1" rowspan="1">
                 <p class="c7"><span class="c0">${dias[index]}</span></p>
-            </td>`;
+            </td> </tbody>`;
     duplasIndex = 0;
 }

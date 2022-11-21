@@ -1,4 +1,10 @@
-      li.li-bullet-0:before {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+   li.li-bullet-0:before {
             margin-left: -18pt;
             white-space: nowrap;
             display: inline-block;
