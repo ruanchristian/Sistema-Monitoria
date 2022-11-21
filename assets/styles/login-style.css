@@ -44,6 +44,6 @@ h3 {
 
 @media(max-width: 450px) {
    .form-signin {
-    padding-top: 25%;
+    padding-top: 20%;
    }
 }
