@@ -78,22 +78,26 @@
             
                 {% if alunos %}
                 <hr>
-                <form method="POST" action="">
+                <form method="POST" action="frequencia/write">
                 <div class="cardAlunos card w-75 mx-auto d-block">
                     <div class="card-body">
                         <h3>Lista de alunos <h6>({{alunos['list'][0]['turma']}})</h6></h3>
                         <hr>
                         <p class="card-text">
                             {% for aluno in alunos['list'] %}
+                            {% if img %}
+                             <img width="18%" class="img-fluid img-thumbnail" src="{{img[loop.index0]}}">
+                             {% else %}
                              <i class="fas fa-user"></i>
-                              <span class="d-inline"> {{aluno['nome']}} - </span>
+                             {% endif %}
+                              <span class="d-inline user-select-none"> {{aluno['nome']}} - </span>
                               <small> ({{aluno['matricula']}})</small><br>
-                              <label class='switch mt-4'><input onchange="changeState(this, `{{aluno['id']}}`)" type='checkbox'><span></span></label>
+                              <label class='switch mt-4'><input value="{{aluno['id']}}" onchange="changeState(this, `{{aluno['id']}}`)" name="check[]" type='checkbox'><span></span></label>
                               <span id="{{aluno['id']}}" class="float-end">P</span>
                               <hr>
                             {% endfor %}
                         </p>
-                        <button class="sendAll btn btn-success mx-auto d-block">
+                        <button class="sendAll btn btn-success bg-gradient mx-auto d-block">
                             <i class="fas fa-upload"></i>
                             Enviar frequência
                         </button>
@@ -104,12 +108,21 @@
                 {% elseif error %} 
  
                 <div class="row">
-                <div class="alert alert-danger alert-dismissible fade show bg-danger bg-gradient col-md-4 col-md-offset-4 mx-auto mt-4" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show bg-danger bg-gradient col-md-4 col-md-offset-4 mx-auto mt-4 text-white" role="alert">
                     {{error['msg']}}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                   </div>
                 </div>
 
+                {% endif %}
+
+                {% if success %}
+                <div class="row">
+                    <div class="alert alert-success alert-dismissible fade show bg-success bg-gradient col-md-4 col-md-offset-4 mx-auto mt-4 text-white" role="alert">
+                        {{success['msg']}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                      </div>
+                    </div>
                 {% endif %}
             
                 <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
