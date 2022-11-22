@@ -36,9 +36,10 @@ class FrequenciaController {
         ]);
     }
 
+    //Função que realiza a frequência e insere no banco.
     public function write() {
      if(!isset($_POST['check'])) {
-      $_SESSION['error_msg'] = ['msg' => "Registre aqui somente as faltas do dia", 'contador' => 1];
+      $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/frequencia');
       die;
      }
@@ -56,9 +57,9 @@ class FrequenciaController {
              VALUES (?, ?, ?, NOW(), ?)")->execute(array(
               $row['nome'], $row['matricula'], $row['turma'], $_SESSION['access']['matricula']
             ));
+     }
             $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
             header('Location: /Sistema Monitoria/frequencia');
-     }
     }
 
     public function search() {

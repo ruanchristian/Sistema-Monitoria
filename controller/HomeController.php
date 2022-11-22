@@ -3,6 +3,7 @@
   class HomeController {
     private $totalMonitores = 0;
     private $totalAlunos = 0;
+    private $totalOcorrencias = 0;
     private $alunos;
     private $monitores;
 
@@ -14,6 +15,7 @@
 
       $this->totalMonitores = $this->getCount("monitores");
       $this->totalAlunos = $this->getCount("alunos");
+      $this->totalOcorrencias = $this->getCount("ocorrencias");
     }
 
     public function onCreate() {
@@ -29,7 +31,8 @@
           'alunos' => $this->alunos,
           'monitores' => $this->monitores,
           'totalMonitores' => $this->totalMonitores,
-          'totalAlunos' => $this->totalAlunos
+          'totalAlunos' => $this->totalAlunos,
+          'totalOcorrencias' => $this->totalOcorrencias
         ]);
     }
 
