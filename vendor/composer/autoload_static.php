@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInita30a874f404c183c0ffa84539d846603
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -38,6 +38,16 @@ class ComposerStaticInita30a874f404c183c0ffa84539d846603
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Smalot\\PdfParser\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/smalot/pdfparser/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -47,6 +57,7 @@ class ComposerStaticInita30a874f404c183c0ffa84539d846603
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita30a874f404c183c0ffa84539d846603::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita30a874f404c183c0ffa84539d846603::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita30a874f404c183c0ffa84539d846603::$prefixesPsr0;
             $loader->classMap = ComposerStaticInita30a874f404c183c0ffa84539d846603::$classMap;
 
         }, null, ClassLoader::class);

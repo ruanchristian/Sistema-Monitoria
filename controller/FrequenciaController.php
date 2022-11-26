@@ -7,7 +7,6 @@ class FrequenciaController {
     private $success;
 
     public function __construct() {
-      $this->readImages();
       $this->error = $_SESSION['error_msg'] ?? null;
       $this->alunos = $_SESSION['students'] ?? null;
       $this->success = $_SESSION['success'] ?? null;

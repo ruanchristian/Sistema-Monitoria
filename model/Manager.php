@@ -17,7 +17,7 @@ class Manager {
             ];
             return true;
         }
-        throw new \Exception("Matrícula ou senha inválidas");
+        throw new Exception("Matrícula ou senha inválidas");
     }
 
     public static function getAllManagers() {

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     rotation('s-2');
     $('#datatable').DataTable({
-        order: [[1, 'asc'], [2, 'asc']],
+        order: [[2, 'asc']],
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
         }

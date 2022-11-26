@@ -1,5 +1,6 @@
 {
     "require": {
-        "twig/twig": "^3.4"
+        "twig/twig": "^3.4",
+        "smalot/pdfparser": "^2.2"
     }
 }

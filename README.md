@@ -4,14 +4,15 @@
 
 - Linguagens:
   - HTML and CSS
-  - JavaScript
   - PHP
+  - JavaScript
 
 - Frameworks e Bibliotecas:  
   - Bootstrap
-  - jQuery
   - Twig
+  - jQuery
   - Font Awesome
+  - PDF Reader
   - html2pdf
 
   <br>

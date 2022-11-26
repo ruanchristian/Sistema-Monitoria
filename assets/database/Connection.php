@@ -3,7 +3,7 @@
 abstract class Connection {
     private static $pdo;
     private static $configs = [
-        "dsn" => "mysql:host=127.0.0.1;dbname=sistema;port=3307",
+        "dsn" => "mysql:host=127.0.0.1;dbname=sistema",
         "user" => "root",
         "pass" => ''
     ];
