@@ -50,31 +50,34 @@
                                     <label for="floatingInputGrid">Data de hoje:</label>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-floating">
-                                    <select name="localSelect" class="form-select text-truncate">
-                                        <option value="Lab. de Informática">Lab. de Informática</option>
-                                        <option value="Lab. de Línguas">Lab. de Línguas</option>
-                                        <option value="Biblioteca">Biblioteca</option>
-                                    </select>
-                                    <label for="selectTurma">Selecione o local:</label>
-                                </div>
+                            <div class="col-md mb-2">
+                                <form method="POST" action="ocorrencia/save">
+                                    <div class="form-floating">
+                                        <select name="local" class="form-select text-truncate">
+                                            <option value="Lab. de Informática">Lab. de Informática</option>
+                                            <option value="Lab. de Línguas">Lab. de Línguas</option>
+                                            <option value="Biblioteca">Biblioteca</option>
+                                        </select>
+                                        <label for="selectTurma">Selecione o local:</label>
+                                    </div>
                             </div>
-                            <div class="col">
+                            <div class="col-md">
                                 <div class="form-floating">
-                                    <select name="localSelect" class="form-select text-truncate" onchange="display(this.value);">
-                                        <option value="Obs">Observação</option>
-                                        <option value="Oco">Ocorrência</option>
+                                    <select name="level" class="form-select text-truncate"
+                                        onchange="display(this.value);">
+                                        <option value="Observação">Observação</option>
+                                        <option value="Ocorrência">Ocorrência</option>
                                     </select>
                                     <label for="selectTurma">Selecione o nível:</label>
                                 </div>
                             </div>
                         </div>
                         <div id="ocorrenciaRow" class="row mb-3 mt-2 mx-auto d-none">
-                            <div class="col">
+                            <div class="col-md">
                                 <div class="form-floating">
-                                    <select name="turma" onchange="ajaxRequest(this.value)" class="form-select text-truncate">
-                                        <option disabled selected>Selecione</option>
+                                    <select name="turma" id="turma" onchange="ajaxRequestSelect(this.value)"
+                                        class="form-select text-truncate">
+                                        <option value="x" disabled selected>Selecione</option>
                                         <optgroup label="1º Séries">
                                             <option value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
                                             <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
@@ -97,10 +100,10 @@
                                     <label for="selectTurma">Informe a turma do aluno</label>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col-md mt-3">
                                 <div class="form-floating">
-                                    <select name="alunos" id="alunos" class="form-select text-truncate">
-                                        <option selected value="">...</option>
+                                    <select disabled name="aluno" id="alunos" class="form-select text-truncate">
+                                        <option value="a" disabled selected>Escolha primeiro a turma</option>
                                     </select>
                                     <label for="selectTurma">Informe o nome do aluno</label>
                                 </div>
@@ -108,12 +111,24 @@
                         </div>
                         <div class="row">
                             <div class="col-md mb-3">
-                                <textarea name="obs" required placeholder="Digite aqui..." class="form-control" rows="4"></textarea>
+                                <textarea name="obs" required placeholder="Digite aqui..." class="form-control"
+                                    rows="4"></textarea>
                             </div>
                         </div>
-                        <button id="registerBtn" class="btn btn-primary bg-gradient"
-                            type="submit">Registrar</button>
+                        <button id="registerBtn" class="btn btn-primary bg-gradient" type="submit">Registrar</button>
+                        </form>
                     </div>
+                    {% if sucesso %}
+
+                    <div class="row">
+                        <div
+                            class="alert alert-success alert-dismissible fade show col-md-4 col-md-offset-4 mx-auto mt-4 bg-success text-white bg-gradient mt-4">
+                            {{sucesso['msg']}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    </div>
+
+                    {% endif %}
                 </div>
         </main>
         <footer class="py-4 bg-light mt-auto">

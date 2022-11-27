@@ -62,9 +62,12 @@ $('#pdfDownload').click(() => {
 const display = (value) => {
     const ROW = document.getElementById('ocorrenciaRow');
     
-    if(value != "Obs") {
+    if(value != "Observação") {
         ROW.classList.remove('d-none');
     } else {
+        $("#turma").val("x");
+        $('#alunos').attr('disabled', 'disabled');
+        $('#alunos').append('<option disabled selected>Escolha primeiro a turma</option>');
         ROW.classList.add('d-none');
     }
 }

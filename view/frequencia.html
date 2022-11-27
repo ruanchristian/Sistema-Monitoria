@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,6 +17,7 @@
     <!-- My Custom CSS and JS file -->
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/styles.css">
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/chamada.css">
+    <script src="/Sistema Monitoria/assets/js/ajax.js"></script>
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 
     <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
@@ -39,7 +41,6 @@
                 <div class="text-center mt-4">
                     <i id="iconCheck" class="fas fa-check"></i>
                     <h5 class="d-inline text-decoration-underline">Frequência - Chamada</h5>
-                    <form method="POST" action="frequencia/search">
                         <div class="container mt-4">
                             <div class="row mb-3 mt-2 mx-auto">
                                 <div class="col-md mb-2">
@@ -50,7 +51,18 @@
                                 </div>
                                 <div class="col-md">
                                     <div class="form-floating">
-                                        <select name="frequenciaSelect" class="form-select text-truncate" id="selectTurma">
+                                        <select disabled class="form-select text-truncate" id="author">
+                                            <option>{{nome|upper}}</option>
+                                    </select>
+                                    <label for="author">Autor:</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3 mt-2 mx-auto">
+                                
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                        <select class="form-select text-truncate" id="selectTurma">
                                             <optgroup label="1º Séries">
                                                 <option value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
                                                 <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
@@ -73,54 +85,42 @@
                                         <label for="selectTurma">Selecione a turma:</label>
                                     </div>
                                 </div>
-                            </div>
                         </div>
-                        <button id="btnSearchCurrent" type="submit" class="btn btn-dark">
+                        <button id="btnSearchCurrent" class="btn btn-dark">
                             <i class="fas fa-search"></i>
                             Buscar Alunos
                         </button>
-                </div>
-                </form>
-            
-                {% if alunos %}
+                 </div>
+            </div>
+
+            <div class="wrapper d-none">
                 <hr>
                 <form method="POST" action="frequencia/write">
-                <div class="cardAlunos card w-75 mx-auto d-block">
+            <div class="row">
+                <div class="col-md">
+                <div class="cardAlunos card mx-auto d-block">
                     <div class="card-body">
-                        <h3>Lista de alunos <h6>({{alunos['list'][0]['turma']}})</h6></h3>
+                        <h3 class="d-inline">Lista de alunos</h3>
+                        <label class="float-end" for="local">
+                            Local: <br>
+                            <select name="local" id="local">
+                                <option value="Lab. de Informática">Lab. de Informática</option>
+                                <option value="Lab. de Línguas">Lab. de Línguas</option>
+                                <option value="Biblioteca">Biblioteca</option>
+                            </select>
+                        </label>
                         <hr>
-                        <p class="card-text">
-                            {% for aluno in alunos['list'] %}
-                            {% if img %}
-                             <img width="15%" class="img-fluid img-thumbnail" src="{{img[loop.index0]}}">
-                             {% else %}
-                             <i class="fas fa-user"></i>
-                             {% endif %}
-                              <span class="d-inline user-select-none"> {{aluno['nome']}} - </span>
-                              <small> ({{aluno['matricula']}})</small><br>
-                              <label class='switch mt-4'><input value="{{aluno['id']}}" onchange="changeState(this, `{{aluno['id']}}`)" name="check[]" type='checkbox'><span></span></label>
-                              <span id="{{aluno['id']}}" class="float-end">P</span>
-                              <hr>
-                            {% endfor %}
-                        </p>
+                        <p class="card-text"></p>
                         <button class="sendAll btn btn-success bg-gradient mx-auto d-block">
                             <i class="fas fa-upload"></i>
                             Enviar frequência
                         </button>
                     </div>
                 </div>
+            </div>
+         </div>
             </form>
-                
-                {% elseif error %} 
- 
-                <div class="row">
-                <div class="alert alert-danger alert-dismissible fade show bg-danger bg-gradient col-md-4 col-md-offset-4 mx-auto mt-4 text-white" role="alert">
-                    {{error['msg']}}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  </div>
-                </div>
-
-                {% endif %}
+        </div>
 
                 {% if success %}
                 <script>
@@ -148,20 +148,6 @@
                 </div>
             </div>
         </main>
-        <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Baixando em pdf...</h5>
-                    </div>
-                    <div class="modal-body mx-auto d-block">
-                        <div class="d-flex justify-content-center">
-                            <div style="width: 3rem; height: 3rem;" class="spinner-border"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
@@ -179,4 +165,12 @@
         </footer>
     </div>
     </body>
+
+    <script>
+        let sel = document.getElementById('selectTurma');
+
+        $("#btnSearchCurrent").click(function() {
+            requestRelantionshipAlunos(sel.value);
+     }) 
+    </script>
 </html>

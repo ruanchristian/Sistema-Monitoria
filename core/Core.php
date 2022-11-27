@@ -29,7 +29,7 @@ class Core {
     }
 
     if ($this->monitor) {
-      $permissions = ["HomeController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "job"];
+      $permissions = ["HomeController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "job-select"];
       if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
         session_destroy();
         $this->controller = "LoginController";

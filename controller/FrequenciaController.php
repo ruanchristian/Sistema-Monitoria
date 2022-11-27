@@ -1,19 +1,12 @@
 <?php
 
 class FrequenciaController {
-    private $alunos = [];
     private $imgs = [];
-    private $error;
     private $success;
 
     public function __construct() {
-      $this->error = $_SESSION['error_msg'] ?? null;
-      $this->alunos = $_SESSION['students'] ?? null;
       $this->success = $_SESSION['success'] ?? null;
 
-
-      if($this->alunos && $_SESSION['students']['counter'] == 1) unset($_SESSION['students']);
-      if($this->error && $_SESSION['error_msg']['contador'] == 1) unset($_SESSION['error_msg']);
       if($this->success && $_SESSION['success']['contador'] == 1) unset($_SESSION['success']);
     }
 
@@ -28,8 +21,6 @@ class FrequenciaController {
         return $template->render([
           'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'date' => date("Y-m-d", time()),
-          'alunos' => $this->alunos,
-          'error' => $this->error,
           'success' => $this->success,
           'img' => $this->imgs ?? null
         ]);
@@ -39,6 +30,7 @@ class FrequenciaController {
     public function write() {
       
      $faltososId = $_POST['check'];
+     $local = $_POST['local'];
      $pdo = Connection::getConnection();
 
      $stmt = $pdo->prepare("SELECT * FROM alunos WHERE id = ?");
@@ -47,18 +39,13 @@ class FrequenciaController {
           $stmt->execute(array($id));
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
           $pdo->prepare(
-            "INSERT INTO faltas (nome_aluno, matricula_aluno, turma_aluno, date_write, author)
-             VALUES (?, ?, ?, NOW(), ?)")->execute(array(
-              $row['nome'], $row['matricula'], $row['turma'], $_SESSION['access']['matricula']
+            "INSERT INTO faltas (nome_aluno, matricula_aluno, turma_aluno, date_write, author, local)
+             VALUES (?, ?, ?, ?, ?, ?)")->execute(array(
+              $row['nome'], $row['matricula'], $row['turma'], date("Y-m-d", time()), $_SESSION['access']['matricula'], $local
             ));
      }
             $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
             header('Location: /Sistema Monitoria/frequencia');
-    }
-
-    public function search() {
-       $turma = $_POST['frequenciaSelect'];
-       FrequenciaController::getAlunosByTurma($turma, "/Sistema Monitoria/frequencia");
     }
 
     public static function getAlunosByTurma($turma, $path) {
