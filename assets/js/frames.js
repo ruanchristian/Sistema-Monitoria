@@ -59,6 +59,16 @@ $('#pdfDownload').click(() => {
     }, 600);
 });
 
+const display = (value) => {
+    const ROW = document.getElementById('ocorrenciaRow');
+    
+    if(value != "Obs") {
+        ROW.classList.remove('d-none');
+    } else {
+        ROW.classList.add('d-none');
+    }
+}
+
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);
     if (checkbox.checked) {
@@ -74,9 +84,4 @@ function forceOp() {
     //Função que vai forçar o usuário a digitar somente números no input text.
     var e = document.getElementById("field01");
     e.value = e.value.replace(/[^0-9]/gi, "");
-}
-
-function openIng() {
-    window.open("https://www.instagram.com/study_informatica_2b/", "_blank");
-    console.log('redirected successfully');
 }

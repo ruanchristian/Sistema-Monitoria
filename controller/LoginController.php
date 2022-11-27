@@ -40,8 +40,7 @@ class LoginController
     }
   }
 
-  public function logout()
-  {
+  public function logout() {
     session_destroy();
     header('Location: /Sistema Monitoria/');
   }

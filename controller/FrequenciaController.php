@@ -37,12 +37,7 @@ class FrequenciaController {
 
     //Função que realiza a frequência e insere no banco.
     public function write() {
-     if(!isset($_POST['check'])) {
-      $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
-      header('Location: /Sistema Monitoria/frequencia');
-      die;
-     }
-
+      
      $faltososId = $_POST['check'];
      $pdo = Connection::getConnection();
 
