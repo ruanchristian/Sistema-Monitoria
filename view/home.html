@@ -5,7 +5,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Dashboard do Sistema" />
     <meta name="author" content="Ruan Christian" />
     <title>Dashboard</title>
     <!-- lib PDF -->
@@ -60,7 +59,7 @@
                             <div class="card-body">
                                 <i class="fas fa-code"></i>
                                 Administradores
-                                <h3 class="float-end">1</h3>
+                                <h3 class="float-end">{{totalAdmins}}</h3>
                             </div>
                         </div>
                     </div>
@@ -109,9 +108,19 @@
                                 Administradores do Sistema
                             </div>
                             <div class="card-body">
-                                <ul>
-                                    <li> RUAN CHRISTIAN FERNANDES DE SOUSA </li>
+                                {% if admins %}
+                                <ul class="list-group">
+                                    {% for admin in admins %}
+
+                                    <li class="list-group-item">{{admin}}</li>
+
+                                    {% endfor %}
+
                                 </ul>
+
+                                {% else %}
+                                <span> Não existem admins cadastrados no momento </span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

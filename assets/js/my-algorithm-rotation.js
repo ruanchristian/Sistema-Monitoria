@@ -40,6 +40,10 @@ function rotation(current) {
 
         switch (current) {
             case "s-1":
+                if(dias[i] == "Segunda") {
+                    i++;
+                    continue;
+                }
                 miniTitle.innerText = "Cronograma - Semana 1";
                 table.innerHTML += `
                 <tbody>

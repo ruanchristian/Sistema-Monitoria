@@ -29,14 +29,14 @@ class Core {
     }
 
     if ($this->monitor) {
-      $permissions = ["HomeController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "job-select"];
+      $permissions = ["HomeController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController"];
       if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
         session_destroy();
         $this->controller = "LoginController";
         $this->invokeMethod = "onCreate";
       }
     } else {
-      $permissions = ["LoginController"];
+      $permissions = ["LoginController", "AdminController"];
       if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
         $this->controller = "LoginController";
         $this->invokeMethod = "onCreate";

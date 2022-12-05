@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    rotation('s-3');
+    rotation('s-1');
     $('#datatable').DataTable({
         order: [[2, 'asc']],
         language: {

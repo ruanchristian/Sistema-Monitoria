@@ -2,10 +2,11 @@
 
 ## Estrutura do Projeto
 
-- Linguagens:
+- Linguagens e Tecnologias:
   - HTML and CSS
   - PHP
   - JavaScript
+  - Ajax
 
 - Frameworks e Bibliotecas:  
   - Bootstrap

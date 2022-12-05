@@ -11,7 +11,9 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#!">Painel <i class="fas fa-gears"></i></a></li>
+                {% if admin %}
+                <li><a class="dropdown-item" href="#!"> Painel do admin <i class="fas fa-gears"></i></a></li>
+                {% endif %}
                 <li><a class="dropdown-item" href="senha"> Alterar senha <i class="fas fa-key"></i></a></li>
                 <li>
                     <hr class="dropdown-divider" />
@@ -46,6 +48,7 @@
                                 <a class="nav-link" href="#">Frequências passadas</a>
                             </nav>
                         </div>
+                        {% if not admin %}
                         <a class="nav-link" href="frequencia">
                             <div class="sb-nav-link-icon"><i class="fas fa-calendar-check"></i></div>
                             Lançar frequência
@@ -59,12 +62,17 @@
                             </div>
                             Registrar ocorrência
                         </a>
+                        {% endif %}
                     </nav>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
                 <div class="small">Olá:</div>
                 {{nome|upper}}
+
+                {% if admin %}
+                [ADMIN]
+                {% endif %}
             </div>
         </nav>
     </div>

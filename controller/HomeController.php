@@ -4,18 +4,22 @@
     private $totalMonitores = 0;
     private $totalAlunos = 0;
     private $totalOcorrencias = 0;
+    private $totalAdmins = 0;
     private $alunos;
     private $monitores;
+    private $admins;
 
     public function __construct() {
       $this->getAlunos();
       $this->alunos = $_SESSION['alunos'] ?? null;
 
       $this->monitores = Manager::getAllManagers();
+      $this->admins = Admin::getAllAdmins();
 
-      $this->totalMonitores = $this->getCount("monitores");
-      $this->totalAlunos = $this->getCount("alunos");
-      $this->totalOcorrencias = $this->getCount("ocorrencias");
+      $this->totalMonitores = $this->getCountOf("monitores");
+      $this->totalAlunos = $this->getCountOf("alunos");
+      $this->totalOcorrencias = $this->getCountOf("ocorrencias");
+      $this->totalAdmins = $this->getCountOf("admins");
     }
 
     public function onCreate() {
@@ -27,12 +31,15 @@
         ]);
         
         return $template->render([
+          'admin' => $_SESSION['access']['accept'] ?? NULL,
           'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'alunos' => $this->alunos,
           'monitores' => $this->monitores,
+          'admins' => $this->admins ?? NULL,
           'totalMonitores' => $this->totalMonitores,
           'totalAlunos' => $this->totalAlunos,
-          'totalOcorrencias' => $this->totalOcorrencias
+          'totalOcorrencias' => $this->totalOcorrencias,
+          'totalAdmins' => $this->totalAdmins
         ]);
     }
 
@@ -44,7 +51,7 @@
       $_SESSION['alunos'] = ['list' => $statement->fetchAll(PDO::FETCH_ASSOC)];
     }
 
-    private function getCount($table) {
+    private function getCountOf($table) {
       $pdo = Connection::getConnection();
       $statement = $pdo->prepare("SELECT COUNT(*) as total FROM {$table}");
       $statement->execute();

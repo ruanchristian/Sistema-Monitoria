@@ -29,7 +29,7 @@ class Manager {
         return array_column($array, 'matricula');
     }
 
-    public function changePassword($pass1, $pass2, $currentPass) {
+    public final function changePassword($pass1, $pass2, $currentPass) {
         $pdo = Connection::getConnection();
         $matricula = $_SESSION['access']['matricula'];
 
