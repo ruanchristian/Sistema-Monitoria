@@ -19,21 +19,24 @@ function ajaxRequestSelect(value) {
     });
 };
 
-function requestRelantionshipAlunos(value) {
+function requestRelantionshipAlunos() {
     const WRAPPER = document.querySelector(".wrapper");
     $(".card-text").empty();
 
     $.ajax({
         type: "POST",
-        url: '/Sistema Monitoria/requests/card-alunos.php',
-        data: {
-            'turma': value
-        },
-    }).done(function (result) {
+        url: '/Sistema Monitoria/requests/card-managers.php',
+    }).done(function(result) {
         WRAPPER.classList.remove("d-none");
-        $(".card-text").append(result);
+        if (result == "" || result == null){
+             $(".card-text").append("Erro 1337 :/");
+             $(".sendAll").addClass("d-none");
+        } else {
+             $(".card-text").append(result);
+             $(".sendAll").removeClass("d-none");
+        }
 
-    }).fail(function () {
-        alert('Turma não cadastrada no banco de dados :/');
+    }).fail(function() {
+        alert('Não existem monitores cadastrados :/');
     });
 }

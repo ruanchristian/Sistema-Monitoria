@@ -40,7 +40,7 @@
             <div class="container-fluid px-4">
                 <div class="text-center mt-4">
                     <i id="iconCheck" class="fas fa-check"></i>
-                    <h5 class="d-inline text-decoration-underline">Frequência - Chamada</h5>
+                    <h5 class="d-inline text-decoration-underline">Frequência - Chamada<br>Monitores</h5>
                         <div class="container mt-4">
                             <div class="row mb-3 mt-2 mx-auto">
                                 <div class="col-md mb-2">
@@ -58,37 +58,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3 mt-2 mx-auto">
-                                
-                                <div class="col-md">
-                                    <div class="form-floating">
-                                        <select class="form-select text-truncate" id="selectTurma">
-                                            <optgroup label="1º Séries">
-                                                <option value="1º A - Administração">1° A - ADMINISTRAÇÃO</option>
-                                                <option value="1º B - Edificações">1° B - EDIFICAÇÕES</option>
-                                                <option value="1º C - Informática">1° C - INFORMÁTICA</option>
-                                                <option value="1º D - Nutrição">1° D - NUTRIÇÃO</option>
-                                            </optgroup>
-                                            <optgroup label="2º Séries">
-                                                <option value="2º A - Edificações">2° A - EDIFICAÇÕES</option>
-                                                <option value="2º B - Informática">2° B - INFORMÁTICA</option>
-                                                <option value="2º C - Logistíca">2° C - LOGÍSTICA</option>
-                                                <option value="2º D - Nutrição">2° D - NUTRIÇÃO</option>
-                                            </optgroup>
-                                            <optgroup label="3º Séries">
-                                                <option value="3º A - Agronegócio">3° A - AGRONEGÓCIO</option>
-                                                <option value="3º B - Edificações">3° B - EDIFICAÇÕES</option>
-                                                <option value="3º C - Informática">3° C - INFORMÁTICA</option>
-                                                <option value="3º D - Nutrição">3° D - NUTRIÇÃO</option>
-                                            </optgroup>
-                                        </select>
-                                        <label for="selectTurma">Selecione a turma:</label>
-                                    </div>
-                                </div>
-                        </div>
-                        <button id="btnSearchCurrent" class="btn btn-dark">
+                        <button id="btnSearchCurrent" class="btn btn-primary">
                             <i class="fas fa-search"></i>
-                            Buscar Alunos
+                            Buscar
                         </button>
                  </div>
             </div>
@@ -100,15 +72,7 @@
                 <div class="col-md">
                 <div class="cardAlunos card mx-auto d-block">
                     <div class="card-body">
-                        <h3 class="d-inline">Lista de alunos</h3>
-                        <label class="float-end" for="local">
-                            Local: <br>
-                            <select name="local" id="local">
-                                <option value="Lab. de Informática">Lab. de Informática</option>
-                                <option value="Lab. de Línguas">Lab. de Línguas</option>
-                                <option value="Biblioteca">Biblioteca</option>
-                            </select>
-                        </label>
+                        <h3 class="d-inline">Lista de monitores</h3>
                         <hr>
                         <p class="card-text"></p>
                         <button class="sendAll btn btn-success bg-gradient mx-auto d-block">
@@ -152,7 +116,7 @@
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
                 <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Created by &copy; <strong>
+                    <div class="text-muted">Criado por &copy; <strong>
                             <a class="text-decoration-none" target="_blank"
                                 href="https://www.instagram.com/ruanchristian7/">Ruan Christian</a>
                         </strong>
@@ -170,7 +134,7 @@
         let sel = document.getElementById('selectTurma');
 
         $("#btnSearchCurrent").click(function() {
-            requestRelantionshipAlunos(sel.value);
+            requestRelantionshipAlunos();
      }) 
     </script>
 </html>

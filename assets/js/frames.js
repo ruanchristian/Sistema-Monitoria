@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    rotation('s-1');
+    rotation('s-2');
     $('#datatable').DataTable({
         order: [[2, 'asc']],
         language: {
@@ -7,6 +7,20 @@ $(document).ready(function () {
         }
     })
 });
+
+$(function() {
+    $("#dialog").dialog({
+        draggable: false,
+        resizable: false,
+        modal: true,
+        hide: "fade",
+        buttons: {
+        Ok: function() {
+          $(this).dialog("close");
+        }
+      }
+    });
+  });
 
 window.addEventListener('DOMContentLoaded', e => {
 

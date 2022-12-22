@@ -33,6 +33,13 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
+                    {% if admin %}
+                    <div class="sb-sidenav-menu-heading">Funções ADMIN</div>
+                        <a class="nav-link" href="frequencia">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-check"></i></div>
+                            Lançar frequência dos Monitores
+                        </a>
+                        {% endif %}
                     <div class="sb-sidenav-menu-heading">Funções</div>
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -48,11 +55,6 @@
                                 <a class="nav-link" href="#">Frequências passadas</a>
                             </nav>
                         </div>
-                        {% if not admin %}
-                        <a class="nav-link" href="frequencia">
-                            <div class="sb-nav-link-icon"><i class="fas fa-calendar-check"></i></div>
-                            Lançar frequência
-                        </a>
                         <a class="nav-link" href="ocorrencia">
                             <div class="sb-nav-link-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-exclamation-fill" viewBox="0 0 16 16">
@@ -62,7 +64,6 @@
                             </div>
                             Registrar ocorrência
                         </a>
-                        {% endif %}
                     </nav>
                 </div>
             </div>

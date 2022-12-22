@@ -22,6 +22,10 @@
         integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+
     <!-- My Custom CSS and JS file -->
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/login-style.css">
     <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
@@ -53,12 +57,27 @@
         <a href="/Sistema Monitoria/login">Voltar</a>
 
         {% if error != null %}
-        <div class="alert alert-danger alert-dismissible fade show bg-danger bg-gradient mt-4">
-            <span class="text-white">{{error['msg']}}</span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
+        <div id="dialog" title="Permissão negada">
+            <p>{{error['msg']}}</p>
+          </div> 
         {% endif %}
     </main>
 </body>
+
+<script>
+    $(function() {
+    $("#dialog").dialog({
+        draggable: false,
+        resizable: false,
+        modal: true,
+        hide: "fade",
+        buttons: {
+        Fechar: function() {
+          $(this).dialog("close");
+        }
+      }
+    });
+  });
+</script>
 
 </html>

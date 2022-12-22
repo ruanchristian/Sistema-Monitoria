@@ -18,7 +18,7 @@
 
       $this->totalMonitores = $this->getCountOf("monitores");
       $this->totalAlunos = $this->getCountOf("alunos");
-      $this->totalOcorrencias = $this->getCountOf("ocorrencias");
+      $this->totalOcorrencias = $this->getCountOf("ocorrencias") + $this->getCountOf("observacoes");
       $this->totalAdmins = $this->getCountOf("admins");
     }
 

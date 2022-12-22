@@ -19,6 +19,7 @@ class FrequenciaController {
         ]);
 
         return $template->render([
+          'admin' => $_SESSION['access']['accept'] ?? NULL,
           'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
           'date' => date("Y-m-d", time()),
           'success' => $this->success,
@@ -30,19 +31,18 @@ class FrequenciaController {
     public function write() {
       
      $faltososId = $_POST['check'];
-     $local = $_POST['local'];
+     $idAdmin = $_SESSION['access']['id'];
      $pdo = Connection::getConnection();
 
-     $stmt = $pdo->prepare("SELECT * FROM alunos WHERE id = ?");
+     $stmt = $pdo->prepare("SELECT * FROM monitores WHERE id = ?");
 
      foreach ($faltososId as $id) {
           $stmt->execute(array($id));
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
           $pdo->prepare(
-            "INSERT INTO faltas (nome_aluno, matricula_aluno, turma_aluno, date_write, author, local)
-             VALUES (?, ?, ?, ?, ?, ?)")->execute(array(
-              $row['nome'], $row['matricula'], $row['turma'], date("Y-m-d", time()), $_SESSION['access']['matricula'], $local
-            ));
+            "INSERT INTO faltas (nome, matricula, date_write, author_id)
+             VALUES (?, ?, ?, ?)")->execute(array(
+              $row['nome'], $row['matricula'], date("Y-m-d", time()), $idAdmin));
      }
             $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
             header('Location: /Sistema Monitoria/frequencia');

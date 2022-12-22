@@ -20,6 +20,7 @@ class SenhaController {
     ]);
 
     return $template->render([
+      'admin' => $_SESSION['access']['accept'] ?? NULL,
       'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
       'error' => $this->valError,
       'isReseted' => $this->isReset
