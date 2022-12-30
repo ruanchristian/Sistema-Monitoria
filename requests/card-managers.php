@@ -1,6 +1,6 @@
 <?php
 define('CONFIGS', [
-    "dsn" => "mysql:host=127.0.0.1;dbname=sistema",
+    "dsn" => "mysql:host=127.0.0.1;dbname=monitoria_labs_eeepjas",
     "user" => "root",
     "pass" => ''
 ]);

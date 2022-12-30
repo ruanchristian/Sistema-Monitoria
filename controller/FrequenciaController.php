@@ -1,7 +1,6 @@
 <?php
 
 class FrequenciaController {
-    private $imgs = [];
     private $success;
 
     public function __construct() {

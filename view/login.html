@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sistema de monitoria EEEP Dr. José Alves da Silveira" />
-    <title>Tela de Login | Monitoria</title>
+    <title>{% block title %} Tela de Login | Monitoria {% endblock %}</title>
 
     <!-- Bootstrap CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -26,6 +26,7 @@
     <script src="/Sistema Monitoria/assets/js/frames.js"></script>
 </head>
 
+{% block body %}
 <body>
     <main class="form-signin text-center mx-auto">
         <h3 class="text-white">Sistema de Monitoria</h3>
@@ -55,6 +56,9 @@
         {% endif %}  
     </main>
 </body>
+{% endblock %}
+
+{% block scripts %}
 <script>
     const msg = "Informe sua matrícula para prosseguir";
     var doc = document.getElementById("field01");
@@ -81,5 +85,6 @@
     });
   });
 </script>
+{% endblock %}
 
 </html>

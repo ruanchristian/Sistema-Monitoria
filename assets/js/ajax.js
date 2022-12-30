@@ -19,7 +19,7 @@ function ajaxRequestSelect(value) {
     });
 };
 
-function requestRelantionshipAlunos() {
+function requestRelantionshipManagers() {
     const WRAPPER = document.querySelector(".wrapper");
     $(".card-text").empty();
 
@@ -35,7 +35,6 @@ function requestRelantionshipAlunos() {
              $(".card-text").append(result);
              $(".sendAll").removeClass("d-none");
         }
-
     }).fail(function() {
         alert('Não existem monitores cadastrados :/');
     });
