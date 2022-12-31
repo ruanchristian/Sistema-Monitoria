@@ -10,6 +10,7 @@
   require_once("controller/SenhaController.php");
   require_once("controller/CadastroController.php");
   require_once("controller/OcorrenciaController.php");
+  require_once("controller/ErrorController.php");
   require_once("model/Manager.php");
   require_once("model/Admin.php");
   require_once("vendor/autoload.php");

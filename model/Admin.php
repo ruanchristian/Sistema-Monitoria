@@ -18,7 +18,7 @@ class Admin extends Manager {
             ];
             return true;
         }
-        throw new Exception("Usuário ou senha inválidos");
+        throw new Exception("Esse admin não existe");
     }
 
     public static function getAllAdmins() {

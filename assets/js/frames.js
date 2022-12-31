@@ -1,9 +1,13 @@
 $(document).ready(function () {
-    rotation('s-2');
+    rotation('s-1');
     $('#datatable').DataTable({
+        columnDefs: [
+            {orderable: false, targets: 'theader'}
+        ],
         order: [[2, 'asc']],
         language: {
-            url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
+            url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json",
+            searchPlaceholder: "Buscar alunos"
         }
     })
 });
@@ -38,7 +42,7 @@ $('#btnSearchCurrent').click(() => {
     $('#modalSpin').modal('show');
     setTimeout(function () {
         $('#modalSpin').modal('hide');
-        console.log('Searching...');
+        console.log('Procurando...');
     }, 1500);
 });
 

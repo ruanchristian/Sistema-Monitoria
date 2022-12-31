@@ -37,8 +37,11 @@ class Core {
       }
     } else {
       $permissions = ["LoginController", "AdminController"];
-      if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
+      if (!isset($this->controller)) {
         $this->controller = "LoginController";
+        $this->invokeMethod = "onCreate";
+      } else if (!in_array($this->controller, $permissions)) {
+        $this->controller = "ErrorController";
         $this->invokeMethod = "onCreate";
       }
     }

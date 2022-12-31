@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="author" content="Ruan Christian" />
-    <title>Dashboard</title>
+    <title>Home</title>
     <!-- lib PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
@@ -86,8 +86,7 @@
                             <div class="card-body">
                                 <div class="c26 doc-content">
                                     <p class="c15">
-                                        <img loading="lazy" src="/Sistema Monitoria/assets/img/eeepjas-icon.png"
-                                            style="width: 120px; height: fit-content">
+                                        <img loading="lazy" src="/Sistema Monitoria/assets/img/eeepjas-icone.svg" width="130rem">
                                     </p>
                                     <p class="c15"><span class="c17">Alunos Monitores do dia</span></p>
                                     <p class="c15"><span id="cron" class="c20">Gerando...</span></p>
@@ -105,7 +104,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-code me-1"></i>
-                                Administradores do Sistema
+                                Administradores
                             </div>
                             <div class="card-body">
                                 {% if admins %}
@@ -135,9 +134,9 @@
                         <table id="datatable">
                             <thead>
                                 <tr>
-                                    <th>Matrícula</th>
-                                    <th>Nome</th>
-                                    <th>Turma</th>
+                                    <th class="theader">Matrícula</th>
+                                    <th class="theader">Nome</th>
+                                    <th class="theader">Turma</th>
                                 </tr>
                             </thead>
                             <tbody>
