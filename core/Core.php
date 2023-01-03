@@ -29,22 +29,33 @@ class Core {
     }
 
     if ($this->monitor) {
-      $permissions = ["HomeController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController"];
+      $permissions = ["HomeController", "AdminController", "FrequenciaController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "LoginController", "ErrorController"];
       if (!isset($this->controller) || !in_array($this->controller, $permissions)) {
         session_destroy();
-        $this->controller = "LoginController";
+        var_dump($this->controller);
+        $this->controller = "ErrorController";
         $this->invokeMethod = "onCreate";
+        $this->params = "Essa página não existe no nosso servidor.";
+      } else if (!is_callable(array(new $this->controller, $this->invokeMethod))) {
+        $this->controller = "ErrorController";
+        $this->invokeMethod = "onCreate";
+        $this->params = "Essa URL não existe no nosso servidor.";
       }
     } else {
-      $permissions = ["LoginController", "AdminController"];
+      $permissions = ["LoginController", "AdminController", "ErrorController"];
       if (!isset($this->controller)) {
         $this->controller = "LoginController";
         $this->invokeMethod = "onCreate";
       } else if (!in_array($this->controller, $permissions)) {
         $this->controller = "ErrorController";
         $this->invokeMethod = "onCreate";
+        $this->params = "Você não tem permissão para acessar essa página.";
+      } else if (!is_callable(array(new $this->controller, $this->invokeMethod))) {
+        $this->controller = "ErrorController";
+        $this->invokeMethod = "onCreate";
+        $this->params = "Essa URL não existe no nosso servidor...";
       }
     }
-     return call_user_func(array(new $this->controller, $this->invokeMethod), $this->params);
-  }
+      return call_user_func(array(new $this->controller, $this->invokeMethod), $this->params);
+    }
 }

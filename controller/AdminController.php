@@ -4,9 +4,12 @@ class AdminController {
     private $errorMsg;
 
     public function __construct() {
-     $this->errorMsg = $_SESSION['error_msg'] ?? null;
+     $this->errorMsg = $_SESSION['error_msg_admin'] ?? null;
 
-     if ($this->errorMsg && $this->errorMsg['contador'] == 1) unset($_SESSION['error_msg']);
+     if ($this->errorMsg) {
+       $_SESSION['error_msg_admin']['contador']++;
+       if ($this->errorMsg['contador'] >= 2) unset($_SESSION['error_msg_admin']);
+     }
     }
 
     public function onCreate() {
@@ -31,7 +34,7 @@ class AdminController {
         $admin->validateLogin();
         header("Location: /Sistema Monitoria/home");
       } catch (Exception $e) {
-        $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
+        $_SESSION['error_msg_admin'] = ['msg' => $e->getMessage(), 'contador' => 1];
         header('Location: /Sistema Monitoria/admin');
       }
    }

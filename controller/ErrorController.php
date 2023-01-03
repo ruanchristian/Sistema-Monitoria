@@ -1,7 +1,7 @@
 <?php
 
 class ErrorController {
-    public function onCreate() {
+    public function onCreate($msg) {
         $loader = new \Twig\Loader\FilesystemLoader('view');
         $twig = new \Twig\Environment($loader);
         $template = $twig->load('404.html', [
@@ -9,6 +9,8 @@ class ErrorController {
           'auto_reload' => true
         ]);
 
-        return $template->render();
+        return $template->render([
+          'msg' => $msg
+        ]);
     }
 }
