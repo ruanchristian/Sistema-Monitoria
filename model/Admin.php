@@ -11,10 +11,9 @@ class Admin extends Manager {
 
         if ($statement->rowCount()) {
             $row = $statement->fetch();
-            $_SESSION['access'] = [
+            $_SESSION['access_admin'] = [
                 'username' => $row['usuario'],
-                'id' => $row['id'],
-                'accept' => TRUE
+                'id' => $row['id']
             ];
             return true;
         }

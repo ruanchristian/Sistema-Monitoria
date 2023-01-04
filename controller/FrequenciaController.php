@@ -6,7 +6,10 @@ class FrequenciaController {
     public function __construct() {
       $this->success = $_SESSION['success'] ?? null;
 
-      if($this->success && $_SESSION['success']['contador'] == 1) unset($_SESSION['success']);
+      if ($this->success) {
+        $_SESSION['success']['contador']++;
+        if ($this->success['contador'] >= 2) unset($_SESSION['success']);
+      }
     }
 
     public function onCreate() {
@@ -18,11 +21,10 @@ class FrequenciaController {
         ]);
 
         return $template->render([
-          'admin' => $_SESSION['access']['accept'] ?? NULL,
-          'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
+          'admin' => $_SESSION['access_admin'] ?? NULL,
+          'nome' => $_SESSION['access']['username'] ?? $_SESSION['access_admin']['username'] ?? NULL,
           'date' => date("Y-m-d", time()),
-          'success' => $this->success,
-          'img' => $this->imgs ?? null
+          'success' => $this->success
         ]);
     }
 
@@ -30,7 +32,7 @@ class FrequenciaController {
     public function write() {
       
      $faltososId = $_POST['check'];
-     $idAdmin = $_SESSION['access']['id'];
+     $idAdmin = $_SESSION['access_admin']['id'];
      $pdo = Connection::getConnection();
 
      $stmt = $pdo->prepare("SELECT * FROM monitores WHERE id = ?");
@@ -62,7 +64,7 @@ class FrequenciaController {
       $file = file($pathFile);
       
       foreach ($file as $key => $row) {
-         $this->imgs[$key] = $row;
+    //     $this->imgs[$key] = $row;
       }
     }
 

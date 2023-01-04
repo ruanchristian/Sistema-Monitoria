@@ -21,6 +21,7 @@ function ajaxRequestSelect(value) {
 
 function requestRelantionshipManagers() {
     const WRAPPER = document.querySelector(".wrapper");
+    const BTN = document.getElementById("btnSearchCurrent");
     $(".card-text").empty();
 
     $.ajax({
@@ -28,6 +29,7 @@ function requestRelantionshipManagers() {
         url: '/Sistema Monitoria/requests/card-managers.php',
     }).done(function(result) {
         WRAPPER.classList.remove("d-none");
+        BTN.style.display = "none";
         if (result == "" || result == null){
              $(".card-text").append("Erro 1337 :/");
              $(".sendAll").addClass("d-none");

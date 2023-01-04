@@ -35,21 +35,3 @@
     </main>
 </body>
 {% endblock %}
-
-{% block scripts %}
-<script>
-    $(function() {
-    $("#dialog").dialog({
-        draggable: false,
-        resizable: false,
-        modal: true,
-        hide: "fade",
-        buttons: {
-        Fechar: function() {
-          $(this).dialog("close");
-        }
-      }
-    });
-  });
-</script>
-{% endblock %}

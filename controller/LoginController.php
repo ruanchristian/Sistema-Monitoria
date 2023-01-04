@@ -6,8 +6,11 @@ class LoginController {
   public function __construct() {
     $this->valError = $_SESSION['error_msg'] ?? null;
 
-    if ($this->valError && $this->valError['contador'] == 1) unset($_SESSION['error_msg']);
-  }
+    if ($this->valError) {
+      $_SESSION['error_msg']['contador']++;
+      if ($this->valError['contador'] >= 2) unset($_SESSION['error_msg']);
+    }
+   }
 
   public function onCreate() {
     $loader = new \Twig\Loader\FilesystemLoader('view');
@@ -28,13 +31,13 @@ class LoginController {
       $manager->validateLogin();
       header("Location: /Sistema Monitoria/home");
     } catch (Exception $e) {
-      $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
+      $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 2];
       header('Location: /Sistema Monitoria/');
     }
   }
 
   public function logout() {
     session_destroy();
-    header('Location: /Sistema Monitoria/');
+    header('Location: /Sistema Monitoria/login');
   }
 }

@@ -18,8 +18,8 @@ class OcorrenciaController {
         ]);
 
         return $template->render([
-          'admin' => $_SESSION['access']['accept'] ?? NULL,
-          'nome' => $_SESSION['access']['username'] ?? "Unknown Source",
+          'admin' => $_SESSION['access_admin'] ?? NULL,
+          'nome' => $_SESSION['access']['username'] ?? $_SESSION['access_admin']['username'] ?? NULL,
           'date' => date("Y-m-d", time()),
           'sucesso' => $this->success
         ]);

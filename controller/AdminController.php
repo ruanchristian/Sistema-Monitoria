@@ -34,7 +34,7 @@ class AdminController {
         $admin->validateLogin();
         header("Location: /Sistema Monitoria/home");
       } catch (Exception $e) {
-        $_SESSION['error_msg_admin'] = ['msg' => $e->getMessage(), 'contador' => 1];
+        $_SESSION['error_msg_admin'] = ['msg' => $e->getMessage(), 'contador' => 2];
         header('Location: /Sistema Monitoria/admin');
       }
    }
