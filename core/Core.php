@@ -44,7 +44,7 @@ class Core {
         $this->params = "Essa URL não existe no nosso servidor.";
       }
     } else if ($this->admin) {
-      array_push($this->permissions_sup, "FrequenciaController");
+      array_push($this->permissions_sup, "FrequenciaController", "PainelController");
       if (!in_array($this->controller, $this->permissions_sup) || !is_callable(array(new $this->controller, $this->invokeMethod))) {
         session_destroy();
         $this->controller = "ErrorController";

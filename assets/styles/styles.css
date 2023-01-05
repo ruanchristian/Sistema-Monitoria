@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar-brand {
   padding-top: 0.3125rem;
   padding-bottom: 0.9000rem;
@@ -237,4 +242,8 @@ body {
 }
 #layoutError #layoutError_footer {
   min-width: 0;
+}
+
+textarea {
+  resize: none;
 }

@@ -111,7 +111,7 @@
                                 <ul class="list-group">
                                     {% for admin in admins %}
 
-                                    <li class="list-group-item">{{admin}}</li>
+                                    <li class="list-group-item">{{admin['usuario']}}</li>
 
                                     {% endfor %}
 
@@ -130,7 +130,6 @@
                         Tabela de Alunos
                     </div>
                     <div class="card-body">
-                        {% if alunos %}
                         <table id="datatable">
                             <thead>
                                 <tr>
@@ -140,6 +139,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                             {% if alunos %}
                                 {% for aluno in alunos['list'] %}
 
                                 {% if aluno['matricula'] in monitores %}
@@ -160,9 +160,9 @@
 
                                 {% endif %}
                                 {% endfor %}
+                              {% endif %}
                             </tbody>
                         </table>
-                         {% endif %}
                     </div>
                 </div>
             </div>

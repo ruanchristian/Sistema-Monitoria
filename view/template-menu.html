@@ -12,9 +12,11 @@
                 aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {% if admin %}
-                <li><a class="dropdown-item" href="#!"> Painel do admin <i class="fas fa-gears"></i></a></li>
+                <li><a class="dropdown-item" href="/Sistema Monitoria/painel"> Painel do admin <i class="fas fa-gears"></i></a></li>
                 {% endif %}
+                {% if not admin %}
                 <li><a class="dropdown-item" href="senha"> Alterar senha <i class="fas fa-key"></i></a></li>
+                {% endif %}
                 <li>
                     <hr class="dropdown-divider" />
                 </li>

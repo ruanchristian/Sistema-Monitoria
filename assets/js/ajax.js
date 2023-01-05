@@ -15,9 +15,32 @@ function ajaxRequestSelect(value) {
         sel.append(result);
 
     }).fail(function () {
-        alert('Erro :/');
+        alert('Não existem alunos registrados :/');
     });
 };
+
+function admin(btnRef) {
+    const VALUE = btnRef.value;
+    const ADMIN_ID = btnRef.id;
+
+    switch(VALUE) {
+        case "delete":
+            $.ajax({
+                type: "POST",
+                url: "/Sistema Monitoria/requests/delete-adm.php",
+                data: {
+                    'id': ADMIN_ID
+                }
+            }).done(() => {
+                location.reload();
+            }).fail(() => {
+                alert("Erro ao excluir :/");
+            });
+            break;
+        case "edit":
+            alert("em desenvolvimento...");    
+    }
+}
 
 function requestRelantionshipManagers() {
     const WRAPPER = document.querySelector(".wrapper");

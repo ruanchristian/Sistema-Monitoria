@@ -26,6 +26,21 @@ class AdminController {
      );
    }
 
+   public function createAccess() {
+    $username = $_POST['username'];
+    $password = $_POST['pass'];
+
+    try {
+      $pdo = Connection::getConnection();
+      $stmt = $pdo->prepare("INSERT INTO admins (usuario, senha) VALUES (?, md5(?))");
+      $stmt->execute(array($username, $password));
+      $_SESSION['success_access'] = ['msg' => "Administrador cadastrado com sucesso.", 'contador' => 1];
+      header('Location: /Sistema Monitoria/painel');
+    } catch (Exception $e) {
+      echo "Erro: ". $e->getMessage();
+    }
+   }
+
    public function verify() {
     try {
         $admin = new Admin();

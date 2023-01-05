@@ -33,8 +33,10 @@ class Manager {
         $pdo = Connection::getConnection();
         $matricula = $_SESSION['access']['matricula'];
 
-        if($pass1 != $pass2) throw new \Exception("Erro ao mudar a senha. As novas senhas não são iguais");
-        if($currentPass != $this->getCurrentPassword($pdo, $matricula)) throw new \Exception("Informe corretamente sua senha atual");
+        if(!$this->getCurrentPassword($pdo, $matricula)) throw new Exception("Erro de SQL");
+
+        if($pass1 != $pass2) throw new Exception("Erro ao mudar a senha. As novas senhas não são iguais");
+        if($currentPass != $this->getCurrentPassword($pdo, $matricula)) throw new Exception("Informe corretamente sua senha atual");
 
         $stmt = $pdo->prepare("UPDATE monitores SET senha = ? WHERE matricula = ?");
         $stmt->execute(array(md5($pass1), $matricula));

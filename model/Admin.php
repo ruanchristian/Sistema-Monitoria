@@ -22,11 +22,10 @@ class Admin extends Manager {
 
     public static function getAllAdmins() {
         $pdo = Connection::getConnection();
-        $stmt = $pdo->prepare("SELECT usuario FROM admins");
+        $stmt = $pdo->prepare("SELECT * FROM admins");
         $stmt->execute();
 
-        $array = $stmt->fetchAll();
-        return array_column($array, 'usuario');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function setUsername($username) {
