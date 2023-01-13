@@ -3,7 +3,7 @@
 abstract class Connection {
     private static $pdo;
     private static $configs = [
-        "dsn" => "mysql:host=127.0.0.1;dbname=monitoria_labs_eeepjas",
+        "dsn" => "mysql:host=127.0.0.1;dbname=db_monitoria",
         "user" => "root",
         "pass" => ''
     ];

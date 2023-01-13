@@ -6,7 +6,10 @@ class OcorrenciaController {
      public function __construct() {
       $this->success = $_SESSION['success'] ?? null;
 
-      if($this->success && $_SESSION['success']['contador'] == 1) unset($_SESSION['success']);
+      if ($this->success) {
+        $_SESSION['success']['contador']++;
+        if ($this->success['contador'] >= 2) unset($_SESSION['success']);
+    }
      }
 
     public function onCreate() {
@@ -30,7 +33,7 @@ class OcorrenciaController {
        $turma = $_POST['turma'];
        $aluno = $_POST['aluno'];
        $level = $_POST['level'];
-       $key = $_SESSION['access']['matricula'] ?? ord($_SESSION['access']['username']);
+       $key = $_SESSION['access']['matricula'] ?? ord($_SESSION['access_admin']['username']);
        $observacao = trim($_POST['obs']);
 
       if(empty($observacao)) die("erro :/ impossível deixar observações em branco <br> <a href='/Sistema Monitoria/ocorrencia'>Voltar</a>");
@@ -44,7 +47,7 @@ class OcorrenciaController {
       $_SESSION['success'] = ['msg' => "Ocorrência registrada com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/ocorrencia');
       return;
-      }
+    }
 
         $stmt = $pdo->prepare("INSERT INTO observacoes (local, observation, author, date_write)
                             VALUES (?, ?, ?, NOW())");

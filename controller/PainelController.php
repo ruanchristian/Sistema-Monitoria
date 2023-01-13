@@ -6,11 +6,11 @@ class PainelController {
 
     public function __construct() {
         $this->admins = Admin::getAllAdmins() ?? NULL;
-        $this->success = $_SESSION['success_access'] ?? NULL;
+        $this->success = $_SESSION['success_adm'] ?? NULL;
 
         if ($this->success) {
-            $_SESSION['success_access']['contador']++;
-            if ($this->success['contador'] >= 2) unset($_SESSION['success_access']);
+            $_SESSION['success_adm']['contador']++;
+            if ($this->success['contador'] >= 2) unset($_SESSION['success_adm']);
         }
     }
 

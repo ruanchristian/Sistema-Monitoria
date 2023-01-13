@@ -3,42 +3,85 @@
 class CadastroController {
     //Classe responsável por ler os dados do PDF e cadastrar todos os alunos da escola no banco de dados.
 
-    public function cadAluno() {
-        $pdo = Connection::getConnection();
-        $alunosF = $this->readSIGEpdf();
-        
-        $statement = $pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
-        foreach ($alunosF as $newAluno) {
-            // Tirar o comentário dessa linha caso precisar cadastrar novamente.
-            // $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
+    // Monta uma tabela com os alunos do PDF selecionado 
+    public function visualizar() {
+        error_reporting(0);
+
+        if(isset($_FILES['pdfalunos'])) {      
+            $alunos = $this->readSIGEpdf($_FILES['pdfalunos']);
+            $turma = $alunos[0]['turma'];
+            
+            echo <<<TABLE
+                <table border='1' style="margin:auto; width:40rem;">
+                 <thead>
+                  <tr>                 
+                    <td colspan='5' style='text-transform: uppercase;'>
+                      <p align='center'><img width='85rem;' src='/Sistema Monitoria/assets/img/eeepjas-icone.svg'><br>
+                        <b> EEEP Dr. José Alves Da Silveira </b> <br>
+                        <b style='text-decoration: underline;'>Turma: $turma</b>
+                      </p>
+                    </td>
+                   </tr> 
+                    <th>Nº</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                  </thead>
+                <tbody>                      
+                TABLE;
+
+            foreach ($alunos as $i => $aluno) {
+                ++$i;
+                $mat = $aluno['matricula'];
+                $nome = $aluno['nome_aluno'];
+                echo <<<TABLEROW
+                    <tr>
+                        <th>$i</th>
+                        <td>$mat</th>
+                        <td>$nome</td>
+                    </tr>
+                TABLEROW;
+            }
+            echo '</tbody>';
+            echo '</table>';
         }
-       header('Location: /Sistema Monitoria/home/');
     }
 
-    private function readSIGEpdf() {
+    // public function cadAluno() {
+    //     $pdo = Connection::getConnection();
+    //     $alunosF = $this->readSIGEpdf();
+        
+    //     $statement = $pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
+    //     foreach ($alunosF as $newAluno) {
+    //         // $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
+    //     }
+    //    header('Location: /Sistema Monitoria/home/');
+    // }
+
+
+    // Faz a leitura do pdf de alunos e coloca os dados em uma matriz.
+    private function readSIGEpdf($file) {
         $parser = new \Smalot\PdfParser\Parser();
-        $path = "/home/christian/Downloads/alunos/";
-        $dir = scandir($path);
+        $path = $file['tmp_name'];
+        $name = $file['name'];
+
         $values = [];
 
-        foreach ($dir as $key => $file) {
-            if ($key < 2) continue;
+        $pdf = $parser->parseFile($path);
+        $dataPdf = $pdf->getPages()[0]->getDataTm();
+        $dataPdf = array_slice($dataPdf, 11);
+        unset($dataPdf[4]);
+        array_push($values, array_column($dataPdf, 1));
+        array_unshift($values[0], explode(".pdf", $name)[0]);
 
-            $pdf = $parser->parseFile($path . $file);
-            $dataPdf = $pdf->getPages()[0]->getDataTm();
-            $dataPdf = array_slice($dataPdf, 11);
-            unset($dataPdf[4]);
-            array_push($values, array_column($dataPdf, 1));
-            array_unshift($values[$key - 2], explode(".pdf", $file)[0]);
-        }
         return $this->mapArray($values);
     }
 
-    private function mapArray($arr) {
+    // Mapeia matriz de alunos e devolve como uma outra matriz organizada
+    private function mapArray($alunos_array) {
         $alunos = array();
         $i = 0;
 
-        foreach ($arr as $k => $aluno) {
+        foreach ($alunos_array as $aluno) {
             $turma = $aluno[0];
             array_shift($aluno);
             foreach ($aluno as $a) {

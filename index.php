@@ -1,6 +1,7 @@
 <?php
   session_start();
   date_default_timezone_set('America/Fortaleza');
+
   require_once("core/Core.php");
   require_once("assets/database/Connection.php");
   require_once("controller/LoginController.php");

@@ -26,6 +26,23 @@ class AdminController {
      );
    }
 
+   public function edit() {
+      $user = $_POST['user'];
+      $pass = $_POST['pass'];
+      $admin_id = $_POST['button'];
+
+      try {
+        $pdo = Connection::getConnection();
+        $stmt = $pdo->prepare("UPDATE admins SET usuario = ?, senha = md5(?) WHERE id = ?");
+        $stmt->execute(array($user, $pass, $admin_id));
+        header('Location: /Sistema Monitoria/painel');
+        $_SESSION['success_adm'] = ['msg' => "Administrador $admin_id editado com sucesso.", 'contador' => 1];
+      } catch (Exception $e) {
+        echo "Erro: " . $e->getMessage();
+      }
+   }
+
+   // Função que cria um novo administrador
    public function createAccess() {
     $username = $_POST['username'];
     $password = $_POST['pass'];
@@ -34,7 +51,7 @@ class AdminController {
       $pdo = Connection::getConnection();
       $stmt = $pdo->prepare("INSERT INTO admins (usuario, senha) VALUES (?, md5(?))");
       $stmt->execute(array($username, $password));
-      $_SESSION['success_access'] = ['msg' => "Administrador cadastrado com sucesso.", 'contador' => 1];
+      $_SESSION['success_adm'] = ['msg' => "Administrador cadastrado com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/painel');
     } catch (Exception $e) {
       echo "Erro: ". $e->getMessage();
