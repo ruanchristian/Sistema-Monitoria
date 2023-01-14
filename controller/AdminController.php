@@ -26,6 +26,7 @@ class AdminController {
      );
    }
 
+   // Editar admin
    public function edit() {
       $user = $_POST['user'];
       $pass = $_POST['pass'];
@@ -40,6 +41,36 @@ class AdminController {
       } catch (Exception $e) {
         echo "Erro: " . $e->getMessage();
       }
+   }
+
+   // Função que cria um novo monitor
+   public function createManager() {
+      $matricula = $_POST['aluno-mat'];
+      $default_pass = "1234";
+
+      try {
+        $pdo = Connection::getConnection();
+        $statement = $pdo->prepare("SELECT nome, turma FROM alunos WHERE matricula = ?");
+        $statement->execute(array($matricula));
+        $aluno_data = $statement->fetch();
+  
+
+        $stmt = $pdo->prepare("INSERT INTO monitores (matricula, nome, senha, turma) VALUES (?, ?, md5(?), ?)");
+        $stmt->execute(array($matricula, $aluno_data['nome'], $default_pass, $aluno_data['turma']));
+        $_SESSION['success_adm'] = ['msg' => "Monitor adicionado com sucesso.", 'contador' => 1];
+        header('Location: /Sistema Monitoria/painel');
+      } catch (Exception $e) {
+        echo "ERRO INESPERADO: ". $e->getMessage();
+      }
+   }
+
+   // Deleta a tabela monitores
+   public function deleteAllManagers() {
+    $pdo = Connection::getConnection();
+
+    $pdo->exec("DELETE FROM monitores");
+    $pdo->exec("ALTER TABLE monitores AUTO_INCREMENT = 1");
+    header("Location: /Sistema Monitoria/painel");
    }
 
    // Função que cria um novo administrador

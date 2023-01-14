@@ -62,7 +62,7 @@
                         <h5 class="text-center text-decoration-underline">Administradores</h5>
                         <table class="table table-bordered table-primary mt-3">
                             <thead>
-                                <th>Índice</th>
+                                <th>ID</th>
                                 <th>Usuário</th>
                                 <th>Editar</th>
                                 <th>Excluir</th>
@@ -94,24 +94,46 @@
                         </table>
                     </div>
                 </div>
-                <div class="row mt-3 mx-auto"><hr>
+                <div class="row mt-3 mx-auto">
+                    <hr>
                     <div class="col-md">
                         <h5 class="text-center">Cadastrar novos alunos</h5>
-                            <form method="POST" action="cadastro/visualizar" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <input accept="application/pdf" type="file" class="form-control" name="pdfalunos" id="file-input" required>
-                                    <div class="form-text">
-                                        <ul>
-                                            <li>Insira aqui o PDF dos alunos (por turma)</li>
-                                            <li>O nome do arquivo PDF deverá conter o nome da turma (EX: 3º B - Informática.pdf)</li>
-                                        </ul>
-                                    </div>
+                        <form method="POST" action="cadastro/visualizar" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input accept="application/pdf" type="file" class="form-control" name="pdfalunos"
+                                    id="file-input" required>
+                                <div class="form-text">
+                                    <ul>
+                                        <li>Insira aqui o PDF dos alunos (por turma)</li>
+                                        <li>O nome do arquivo PDF deverá conter o nome da turma (EX: 3º B -
+                                            Informática.pdf)</li>
+                                    </ul>
                                 </div>
-                                  <button class="btn btn-primary float-end mt-3" type="submit">Ver relação</button>
-                            </form>
+                            </div>
+                            <button class="btn btn-primary mt-3" type="submit">Ver relação</button>
+                        </form>
                     </div>
                     <div class="col-md">
-                        <h6 class="text-center">teste</h6>
+                        <h5 class="text-center">Cadastrar monitores</h5>
+                        {% if alunos['list'] %}
+                        <label for="datalist" class="form-label">Selecione a matrícula do aluno a ser monitor:</label>
+                        <form method="POST" action="admin/createManager">
+                            <input required name="aluno-mat" class="form-select" list="alunos-list" id="datalist" placeholder="Buscar aluno...">
+                            <datalist id="alunos-list">
+                                {% for aluno in alunos['list'] %}
+                                <option value="{{aluno['matricula']}}">
+                                    {{aluno['nome']}} - {{aluno['turma']}}
+                                </option>
+                                {% endfor %}
+                            </datalist>
+                            <div class="form-text mt-2">
+                                <span>A senha por padrão será: 1234</span>
+                            </div>
+                            <button class="btn btn-primary float-end mt-2" type="submit">Criar</button>
+                        </form>
+                        {% else %}
+                        <span class="text-danger">Não existem alunos cadastrados!</span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -240,7 +262,7 @@
                             switch (t.type || "button") {
                                 case "dismiss":
                                     p +=
-                                    `<button type="button" class="${t.class}" data-bs-dismiss="modal">${t.text}</button>`;
+                                        `<button type="button" class="${t.class}" data-bs-dismiss="modal">${t.text}</button>`;
                                     break;
                                 default:
                                     let s = `modal-${_classPrivateFieldGet(this,_count)}-button-${e}`;
@@ -337,7 +359,7 @@
                                 switch (t.type || "button") {
                                     case "dismiss":
                                         u +=
-                                        `<button type="button" class="${t.class}" data-bs-dismiss="toast">${t.text}</button>&nbsp;`;
+                                            `<button type="button" class="${t.class}" data-bs-dismiss="toast">${t.text}</button>&nbsp;`;
                                         break;
                                     default:
                                         let s = `toast-${_classPrivateFieldGet(this,_count3)}-button-${e}`;
@@ -376,7 +398,7 @@
                 }
                 static registerStyle(t, e) {
                     if ("object" != typeof e && Array.isArray(e))
-                    throw "The styles parameter must be an object when you register component style.";
+                        throw "The styles parameter must be an object when you register component style.";
                     Bs5Utils.defaults.styles[t] = e
                 }
             }

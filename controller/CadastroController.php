@@ -10,7 +10,9 @@ class CadastroController {
         if(isset($_FILES['pdfalunos'])) {      
             $alunos = $this->readSIGEpdf($_FILES['pdfalunos']);
             $turma = $alunos[0]['turma'];
-            
+
+            $_SESSION['alunos_cad'] = $alunos;
+             
             echo <<<TABLE
                 <table border='1' style="margin:auto; width:40rem;">
                  <thead>
@@ -43,19 +45,23 @@ class CadastroController {
             }
             echo '</tbody>';
             echo '</table>';
+            echo "<a href='/Sistema Monitoria/cadastro/cadAluno'> <button style='width:10rem; height:2rem; float:right;'>CADASTRAR ALUNOS</button> </a>";
         }
     }
 
-    // public function cadAluno() {
-    //     $pdo = Connection::getConnection();
-    //     $alunosF = $this->readSIGEpdf();
-        
-    //     $statement = $pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
-    //     foreach ($alunosF as $newAluno) {
-    //         // $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
-    //     }
-    //    header('Location: /Sistema Monitoria/home/');
-    // }
+     public function cadAluno() {
+         $pdo = Connection::getConnection();
+         $alunos = $_SESSION['alunos_cad'];
+         $turma_nome = $alunos[0]['turma'];
+  
+         $statement = $pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
+         foreach ($alunos as $newAluno) {
+              $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
+         }
+        unset($_SESSION['alunos_cad']); 
+        $_SESSION['success_adm'] = ['msg' => "Alunos de $turma_nome cadastrados com sucesso.", 'contador' => 1];
+        header('Location: /Sistema Monitoria/painel');
+     }
 
 
     // Faz a leitura do pdf de alunos e coloca os dados em uma matriz.
@@ -95,7 +101,6 @@ class CadastroController {
                }
                $i++;
             }
-            
         }
         return array_values($alunos);
     }

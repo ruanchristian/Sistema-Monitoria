@@ -2,11 +2,13 @@
 
 class PainelController {
     private $admins;
+    private $alunos;
     private $success;
 
     public function __construct() {
         $this->admins = Admin::getAllAdmins() ?? NULL;
         $this->success = $_SESSION['success_adm'] ?? NULL;
+        $this->alunos = $_SESSION['alunos'] ?? NULL;
 
         if ($this->success) {
             $_SESSION['success_adm']['contador']++;
@@ -26,6 +28,7 @@ class PainelController {
             'admin' => $_SESSION['access_admin'] ?? NULL,
             'nome' => $_SESSION['access']['username'] ?? $_SESSION['access_admin']['username'] ?? NULL,
             'admins' => $this->admins,
+            'alunos' => $this->alunos,
             'success_access' => $this->success
         ]);
     }
