@@ -64,12 +64,26 @@ class AdminController {
       }
    }
 
-   // Deleta a tabela monitores
-   public function deleteAllManagers() {
+   // Deleta a tabela passada como argumento da função
+   public function deleteOf($table_name) {
     $pdo = Connection::getConnection();
 
-    $pdo->exec("DELETE FROM monitores");
-    $pdo->exec("ALTER TABLE monitores AUTO_INCREMENT = 1");
+    $permissoes = ['alunos', 'monitores', 'observacoes', 'ocorrencias'];
+
+    if(!in_array($table_name[0], $permissoes)) {
+      header("Location: /Sistema Monitoria/painel");
+    }
+
+    if ($table_name[0] === $permissoes[2] && $table_name[1] === $permissoes[3]) {
+      $pdo->exec("TRUNCATE $table_name[0]");
+      $pdo->exec("TRUNCATE $table_name[1]");
+      $_SESSION['success_adm'] = ['msg' => "Os dados das tabelas Observações e Ocorrências foram excluídos com sucesso.", 'contador' => 1];
+      header("Location: /Sistema Monitoria/painel");
+      die;
+    }
+
+    $pdo->exec("TRUNCATE $table_name");
+    $_SESSION['success_adm'] = ['msg' => "Os dados da tabela $table_name foram excluídos com sucesso.", 'contador' => 1];
     header("Location: /Sistema Monitoria/painel");
    }
 
