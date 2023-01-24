@@ -33,7 +33,7 @@ class OcorrenciaController {
        $turma = $_POST['turma'];
        $aluno = $_POST['aluno'];
        $level = $_POST['level'];
-       $key = $_SESSION['access']['matricula'] ?? ord($_SESSION['access_admin']['username']);
+       $key = $_SESSION['access']['matricula'] ?? $_SESSION['access_admin']['hash'];
        $observacao = trim($_POST['obs']);
 
       if(empty($observacao)) die("erro :/ impossível deixar observações em branco <br> <a href='/Sistema Monitoria/ocorrencia'>Voltar</a>");
@@ -46,13 +46,13 @@ class OcorrenciaController {
       $stmt->execute(array($local, $turma, $aluno, $observacao, $key));
       $_SESSION['success'] = ['msg' => "Ocorrência registrada com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/ocorrencia');
-      return;
+      die;
     }
 
-        $stmt = $pdo->prepare("INSERT INTO observacoes (local, observation, author, date_write)
+      $stmt = $pdo->prepare("INSERT INTO observacoes (local, observation, author, date_write)
                             VALUES (?, ?, ?, NOW())");
-        $stmt->execute(array($local, $observacao, $key));                    
-        $_SESSION['success'] = ['msg' => "Observação registrada com sucesso.", 'contador' => 1];
-        header('Location: /Sistema Monitoria/ocorrencia');
+      $stmt->execute(array($local, $observacao, $key));                    
+      $_SESSION['success'] = ['msg' => "Observação registrada com sucesso.", 'contador' => 1];
+      header('Location: /Sistema Monitoria/ocorrencia');
     }
 }

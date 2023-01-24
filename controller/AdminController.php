@@ -75,15 +75,14 @@ class AdminController {
     }
 
     if ($table_name[0] === $permissoes[2] && $table_name[1] === $permissoes[3]) {
-      $pdo->exec("TRUNCATE $table_name[0]");
-      $pdo->exec("TRUNCATE $table_name[1]");
+      $pdo->exec("TRUNCATE $table_name[0]; TRUNCATE $table_name[1]");
       $_SESSION['success_adm'] = ['msg' => "Os dados das tabelas Observações e Ocorrências foram excluídos com sucesso.", 'contador' => 1];
       header("Location: /Sistema Monitoria/painel");
       die;
     }
 
-    $pdo->exec("TRUNCATE $table_name");
-    $_SESSION['success_adm'] = ['msg' => "Os dados da tabela $table_name foram excluídos com sucesso.", 'contador' => 1];
+    $pdo->exec("TRUNCATE $table_name[0]");
+    $_SESSION['success_adm'] = ['msg' => "Os dados da tabela $table_name[0] foram excluídos com sucesso.", 'contador' => 1];
     header("Location: /Sistema Monitoria/painel");
    }
 
@@ -91,11 +90,12 @@ class AdminController {
    public function createAccess() {
     $username = $_POST['username'];
     $password = $_POST['pass'];
+    $hash_admin = abs(intval(crc32($username)));
 
     try {
       $pdo = Connection::getConnection();
-      $stmt = $pdo->prepare("INSERT INTO admins (usuario, senha) VALUES (?, md5(?))");
-      $stmt->execute(array($username, $password));
+      $stmt = $pdo->prepare("INSERT INTO admins (usuario, senha, hash) VALUES (?, md5(?), ?)");
+      $stmt->execute(array($username, $password, $hash_admin));
       $_SESSION['success_adm'] = ['msg' => "Administrador cadastrado com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/painel');
     } catch (Exception $e) {

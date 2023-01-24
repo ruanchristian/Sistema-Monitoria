@@ -30,9 +30,8 @@ class FrequenciaController {
 
     //Função que realiza a frequência e insere no banco.
     public function write() {
-      
      $faltososId = $_POST['check'];
-     $idAdmin = $_SESSION['access_admin']['id'];
+     $hash_admin = $_SESSION['access_admin']['hash'];
      $pdo = Connection::getConnection();
 
      $stmt = $pdo->prepare("SELECT * FROM monitores WHERE id = ?");
@@ -43,7 +42,7 @@ class FrequenciaController {
           $pdo->prepare(
             "INSERT INTO faltas (nome, matricula, date_write, author_id)
              VALUES (?, ?, ?, ?)")->execute(array(
-              $row['nome'], $row['matricula'], date("Y-m-d", time()), $idAdmin));
+              $row['nome'], $row['matricula'], date("Y-m-d", time()), $hash_admin));
      }
             $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
             header('Location: /Sistema Monitoria/frequencia');

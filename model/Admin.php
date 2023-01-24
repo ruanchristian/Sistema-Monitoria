@@ -13,7 +13,8 @@ class Admin extends Manager {
             $row = $statement->fetch();
             $_SESSION['access_admin'] = [
                 'username' => $row['usuario'],
-                'id' => $row['id']
+                'id' => $row['id'],
+                'hash' => $row['hash']
             ];
             return true;
         }
