@@ -9,16 +9,26 @@
     <title>{% block title %} Tela de Login | Monitoria {% endblock %}</title>
 
     <!-- Bootstrap CSS and JS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
+
 
     <!-- Font Awesome LIB -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js" integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/fontawesome.min.js"
+        integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 
     <!-- My Custom CSS and JS file -->
     <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/login-style.css">
@@ -27,34 +37,49 @@
 </head>
 
 {% block body %}
-<body>
-    <main class="form-signin text-center mx-auto">
-        <h3 class="text-white">Sistema de Monitoria</h3>
-        <img id="icon-2b" class="img-fluid mx-auto d-block mb-3" loading="lazy" src="/Sistema Monitoria/assets/img/infortec2b-icon.png">
-        <form method="POST" action="/Sistema Monitoria/login/check">
-            <div class="form-floating">
-                <input required class="form-control" id="field01" type="text" name="matricula" oninput="forceOp()"
-                    maxlength="7" placeholder="Matrícula">
-                <label for="field01">Matrícula</label>
-            </div>
-            <div class="form-floating mb-3">
-                <input required class="form-control" type="password" name="pass" id="pass" maxlength="17"
-                    placeholder="Senha">
-                <label for="pass">Senha</label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-                <i class="fas fa-sign-in-alt"></i>
-                Entrar
-            </button>
-        </form><br>
-        <a href="/Sistema Monitoria/admin">Logar como admin</a>
 
-        {% if error != null %}
-        <div id="dialog" title="Problema ao logar">
-            <p>{{error['msg']}}</p>
-          </div>
-        {% endif %}  
-    </main>
+<body class="login">
+    <div class="login-container">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center bg-white">
+                <h2 class="system">Sistema de Monitoria <b>EEEPJAS</b></h2>
+            </div>
+            <div class="card-body">
+                <p class="login-msg text-center">Faça o login como monitor</p>
+
+                <form method="POST" action="/Sistema Monitoria/login/check">
+                    <div class="input-group mb-3">
+                        <input required placeholder="Matrícula" id="field01" class="form-control" type="text"
+                            maxlength="7" name="matricula" oninput="forceOp()">
+                        <div class="input-append">
+                            <div class="input-group-text">
+                                <i class="fas fa-key"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required class="form-control" maxlength="17" type="password" name="pass"
+                            placeholder="Senha">
+                        <div class="input-append">
+                            <div class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/Sistema Monitoria/admin">Logar como admin</a>
+                    <button type="submit" class="btn btn-primary float-end">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if error != null %}
+    <div id="dialog" title="Problema ao logar">
+        <p>{{error['msg']}}</p>
+    </div>
+    {% endif %}
 </body>
 {% endblock %}
 

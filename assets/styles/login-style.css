@@ -1,31 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta+Vaani:wght@400&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Mukta Vaani', sans-serif;
 }
 
-body {
-  background-image: url(../img/background.jpg);
-  background-position: center;
+.login {
+  display: flex;
+  display: -ms-flexbox;
+  justify-content: center;
+  -ms-flex-pack: center;
+  align-items: center;
+  -ms-flex-align: center;
+  background-color: #e9ecef;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.form-signin {
-  max-width: 330px;
-  padding: 20px;
-  padding-top: 32px;
+.card {
+  border-top: 3.5px solid #007bff;
 }
 
-h3 {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+.system {
+  line-height: 1.2;
+  margin-top: 1%;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+.login-container {
+  width: 360px;
+}
+
+.input-append {
+  display: flex;
+  margin-left: -1px;
+}
+
+.input-group-text {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
   text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: .25rem
 }
 
-#icon-2b {
-  width: 40%;
+h2:hover {
+  color: #0056b3;
 }
 
-@media(max-width: 450px) {
-   .form-signin {
-    padding-top: 20%;
-   }
+@media (max-width: 576px) {
+  .login-container {
+    margin-top: .5rem;
+    width: 90%;
+  }
+
+  .login-container .card {
+    margin-bottom: 0;
+  }
+
+  .login-msg {
+     margin: 0;
+     padding: 0 20px 20px;
+  }
 }

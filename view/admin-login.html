@@ -3,35 +3,47 @@
 {% block title %} Login Admin | Sistema {% endblock %}
 
 {% block body %}
-<body>
-    <main class="form-signin text-center mx-auto">
-        <h3 class="text-white">Sistema de Monitoria</h3>
-        <h6 class="text-white">Entre como admin</h6>
-        <img id="icon-2b" class="img-fluid mx-auto d-block mb-3" loading="lazy" src="/Sistema Monitoria/assets/img/infortec2b-icon.png">
-    
-        <form method="POST" action="/Sistema Monitoria/admin/verify">
-            <div class="form-floating">
-                <input required class="form-control" id="field1" type="text" name="user" maxlength="30"
-                    placeholder="Usuário">
-                <label for="field1">Usuário</label>
+<body class="login">
+    <div class="login-container">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center bg-white">
+                <h2 class="system">Sistema de Monitoria <b>EEEPJAS</b></h2>
             </div>
-            <div class="form-floating mb-3">
-                <input required class="form-control" type="password" name="pass" id="pass" maxlength="17"
-                    placeholder="Senha">
-                <label for="pass">Senha</label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-                <i class="fas fa-sign-in-alt"></i>
-                Entrar
-            </button>
-        </form><br>
-        <a href="/Sistema Monitoria/login">Voltar</a>
+            <div class="card-body">
+                <p class="login-msg text-center">Entre como <b>administrador</b></p>
 
-        {% if error != null %}
-        <div id="dialog" title="Permissão negada">
-            <p>{{error['msg']}}</p>
-          </div> 
-        {% endif %}
-    </main>
+                <form method="POST" action="/Sistema Monitoria/admin/verify">
+                    <div class="input-group mb-3">
+                        <input required placeholder="Usuário" class="form-control" type="text"
+                            maxlength="30" name="user">
+                        <div class="input-append">
+                            <div class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input required class="form-control" maxlength="17" type="password" name="pass"
+                            placeholder="Senha">
+                        <div class="input-append">
+                            <div class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/Sistema Monitoria/">Voltar</a>
+                    <button type="submit" class="btn btn-primary float-end">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Entrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if error != null %}
+    <div id="dialog" title="Permissão negada">
+        <p>{{error['msg']}}</p>
+    </div>
+    {% endif %}
 </body>
 {% endblock %}
