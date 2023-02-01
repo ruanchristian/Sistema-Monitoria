@@ -12,6 +12,16 @@ $(document).ready(function () {
     })
 });
 
+function showCustomAlert(msg) {
+    Swal.fire({
+        titleText: "Sucesso",
+        text: msg,
+        icon: "success",
+        confirmButtonText: "OK",
+        confirmButtonColor: '#0056b3'
+    });
+}
+
 $(function() {
     $("#dialog").dialog({
         draggable: false,
@@ -27,7 +37,6 @@ $(function() {
   });
 
 window.addEventListener('DOMContentLoaded', e => {
-
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', e => {
@@ -44,10 +53,6 @@ $('#btnSearchCurrent').click(() => {
         $('#modalSpin').modal('hide');
         console.log('Procurando...');
     }, 1500);
-});
-
-$('.sendAll').click(() => {
-    $('#passConfirm').modal('show');
 });
 
 const body = document.querySelector(".c26");
@@ -93,10 +98,10 @@ const display = (value) => {
 const changeState = (checkbox, p) => {
     let state = document.getElementById(p);
     if (checkbox.checked) {
-        state.innerHTML = "F";
+        state.innerHTML = "AUSENTE";
         state.style.color = "red";
     } else {
-        state.innerHTML = "P";
+        state.innerHTML = "PRESENTE";
         state.style.color = "black";
     }
 }

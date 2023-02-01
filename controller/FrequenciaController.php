@@ -40,12 +40,12 @@ class FrequenciaController {
           $stmt->execute(array($id));
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
           $pdo->prepare(
-            "INSERT INTO faltas (nome, matricula, date_write, author_id)
+            "INSERT INTO faltas (nome, matricula, date_write, author_hash)
              VALUES (?, ?, ?, ?)")->execute(array(
               $row['nome'], $row['matricula'], date("Y-m-d", time()), $hash_admin));
      }
             $_SESSION['success'] = ['msg' => "Frequência registrada com sucesso.", 'contador' => 1];
-            header('Location: /Sistema Monitoria/frequencia');
+            header('Location: ../frequencia');
     }
 
     public static function getAlunosByTurma($turma, $path) {

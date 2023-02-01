@@ -7,7 +7,7 @@ class Core {
   private $params = [];
   private $monitor;
   private $admin;
-  private $permissions_sup = ["HomeController", "AdminController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "LoginController", "ErrorController"];
+  private $permissions_sup = ["HomeController", "ConsultasController", "AdminController", "SenhaController", "AlunosController", "CadastroController", "OcorrenciaController", "LoginController", "ErrorController"];
 
   public function __construct() {
     $this->monitor = $_SESSION['access'] ?? NULL;
@@ -44,7 +44,7 @@ class Core {
         $this->params = "Essa URL não existe no nosso servidor.";
       }
     } else if ($this->admin) {
-      array_push($this->permissions_sup, "FrequenciaController", "PainelController");
+      array_push($this->permissions_sup, "FrequenciaController", "PainelController", "ConsultasController");
       if (!in_array($this->controller, $this->permissions_sup) || !is_callable(array(new $this->controller, $this->invokeMethod))) {
         session_destroy();
         $this->controller = "ErrorController";

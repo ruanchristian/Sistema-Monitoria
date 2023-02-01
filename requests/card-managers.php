@@ -20,7 +20,7 @@ foreach ($arr as $manager) {
       <span class="d-inline user-select-none"> {$manager['nome']} </span>
       <small> ({$manager['matricula']})</small><br>
       <label class='switch mt-4'><input value="{$manager['id']}" onchange="changeState(this, `{$manager['id']}`)" name="check[]" type='checkbox'><span></span></label>
-      <span id="{$manager['id']}" class="float-end">P</span>
+      <span id="{$manager['id']}" class="float-end">PRESENTE</span>
       <hr>
     MANAGER;
 }

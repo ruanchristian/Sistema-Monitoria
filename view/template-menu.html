@@ -12,7 +12,7 @@
                 aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {% if admin %}
-                <li><a class="dropdown-item" href="/Sistema Monitoria/painel"> Painel do admin <i class="fas fa-gears"></i></a></li>
+                <li><a class="dropdown-item" href="painel"> Painel do admin <i class="fas fa-gears"></i></a></li>
                 {% endif %}
                 {% if not admin %}
                 <li><a class="dropdown-item" href="senha"> Alterar senha <i class="fas fa-key"></i></a></li>
@@ -44,11 +44,9 @@
                         {% endif %}
                     <div class="sb-sidenav-menu-heading">Funções</div>
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                        <a class="nav-link" href="consultas">
                             <div class="sb-nav-link-icon"><i class="fas fa-magnifying-glass"></i></div>
-                            Consultar
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            Consultar dados
                         </a>
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordionPages">

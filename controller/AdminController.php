@@ -58,7 +58,7 @@ class AdminController {
         $stmt = $pdo->prepare("INSERT INTO monitores (matricula, nome, senha, turma) VALUES (?, ?, md5(?), ?)");
         $stmt->execute(array($matricula, $aluno_data['nome'], $default_pass, $aluno_data['turma']));
         $_SESSION['success_adm'] = ['msg' => "Monitor adicionado com sucesso.", 'contador' => 1];
-        header('Location: /Sistema Monitoria/painel');
+        header('Location: painel');
       } catch (Exception $e) {
         echo "ERRO INESPERADO: ". $e->getMessage();
       }
@@ -68,14 +68,15 @@ class AdminController {
    public function deleteOf($table_name) {
     $pdo = Connection::getConnection();
 
-    $permissoes = ['alunos', 'monitores', 'observacoes', 'ocorrencias'];
+    $permissoes = ['alunos', 'monitores', 'observacoes', 'ocorrencias', 'faltas'];
 
-    if(!in_array($table_name[0], $permissoes)) {
+    if (!in_array($table_name[0], $permissoes) && !in_array($table_name[1], $permissoes)) {
       header("Location: /Sistema Monitoria/painel");
+      die;
     }
 
     if ($table_name[0] === $permissoes[2] && $table_name[1] === $permissoes[3]) {
-      $pdo->exec("TRUNCATE $table_name[0]; TRUNCATE $table_name[1]");
+      $pdo->exec("TRUNCATE $table_name[0]; TRUNCATE $table_name[1];");
       $_SESSION['success_adm'] = ['msg' => "Os dados das tabelas Observações e Ocorrências foram excluídos com sucesso.", 'contador' => 1];
       header("Location: /Sistema Monitoria/painel");
       die;
@@ -109,10 +110,10 @@ class AdminController {
         $admin->setUsername($_POST['user']);
         $admin->setPassword($_POST['pass']);
         $admin->validateLogin();
-        header("Location: /Sistema Monitoria/home");
+        header("Location: ../home");
       } catch (Exception $e) {
         $_SESSION['error_msg_admin'] = ['msg' => $e->getMessage(), 'contador' => 2];
-        header('Location: /Sistema Monitoria/admin');
+        header('Location: ../admin');
       }
    }
 }
