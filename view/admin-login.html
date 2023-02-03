@@ -12,7 +12,7 @@
             <div class="card-body">
                 <p class="login-msg text-center">Entre como <b>administrador</b></p>
 
-                <form method="POST" action="/Sistema Monitoria/admin/verify">
+                <form method="POST" action="admin/verify">
                     <div class="input-group mb-3">
                         <input required placeholder="Usuário" class="form-control" type="text"
                             maxlength="30" name="user">
@@ -40,10 +40,10 @@
             </div>
         </div>
     </div>
-    {% if error != null %}
-    <div id="dialog" title="Permissão negada">
-        <p>{{error['msg']}}</p>
-    </div>
+    {% if error %}
+    <script>
+        showCustomAlert("Permissão negada!", "error", `{{error['msg']}}`);
+    </script>
     {% endif %}
 </body>
 {% endblock %}

@@ -2,6 +2,11 @@
 
 class CadastroController {
     //Classe responsável por ler os dados do PDF e cadastrar todos os alunos da escola no banco de dados.
+    private $pdo;
+
+    public function __construct(){
+        $this->pdo = Connection::getConnection();
+    }
 
     // Monta uma tabela com os alunos do PDF selecionado 
     public function visualizar() {
@@ -50,19 +55,23 @@ class CadastroController {
     }
 
      public function cadAluno() {
-         $pdo = Connection::getConnection();
          $alunos = $_SESSION['alunos_cad'];
          $turma_nome = $alunos[0]['turma'];
   
-         $statement = $pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
+         $statement = $this->pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
          foreach ($alunos as $newAluno) {
               $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
          }
+        $this->cadTurma($turma_nome);
         unset($_SESSION['alunos_cad']); 
         $_SESSION['success_adm'] = ['msg' => "Alunos de $turma_nome cadastrados com sucesso.", 'contador' => 1];
         header('Location: /Sistema Monitoria/painel');
      }
 
+     private function cadTurma($turma) {
+        $stmt = $this->pdo->prepare("INSERT INTO turmas (nome, periodo) VALUES (?, ?)");
+        $stmt->execute(array($turma, date("Y", time())));
+     }
 
     // Faz a leitura do pdf de alunos e coloca os dados em uma matriz.
     private function readSIGEpdf($file) {

@@ -95,7 +95,34 @@
                 </div>
                 <div class="row mt-3 mx-auto">
                     <hr>
-                    <div class="col mb-3">
+                    <div class="col mb-4">
+                        <h5 class="text-center">Turmas</h5>
+                        {% if turmas %}
+
+                        <table class="table table-bordered table-primary mt-3">
+                            <thead>
+                                <th>Nome</th>
+                                <th>Período</th>
+                            </thead>
+                            <tbody>
+                                {% for turma in turmas %}
+
+                               <tr> 
+                                <td>{{turma['nome']}}</td>
+                                <th>{{turma['periodo']}}</th>
+                            </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <small class="text-muted mb-3">OBS: essas turmas são apenas do atual período letivo.</small>
+
+                        {% else %}
+
+                        <span class="text-danger">Não existem turmas cadastradas nesse período letivo</span>
+
+                        {% endif %}
+                    </div>
+                    <div class="col-md mb-4">
                         <h5 class="text-center">Cadastrar novos alunos</h5>
                         <form method="POST" action="cadastro/visualizar" enctype="multipart/form-data">
                             <div class="form-group">
@@ -104,7 +131,7 @@
                                 <div class="form-text">
                                     <ul>
                                         <li>Insira aqui o PDF dos alunos (por turma)</li>
-                                        <li>O nome do arquivo PDF deverá conter o nome da turma (EX: 3º B -
+                                        <li>O nome do arquivo PDF deverá conter o nome da turma <br> (EX: 3º B -
                                             Informática.pdf)</li>
                                     </ul>
                                 </div>
@@ -112,13 +139,13 @@
                             <button class="btn btn-primary mt-3" type="submit">Ver relação</button>
                         </form>
                     </div>
-                    <div class="col-md mb-3">
+                    <div class="col-md mb-4">
                         <h5 class="text-center">Cadastrar monitores</h5>
                         {% if alunos['list'] %}
                         <label for="datalist" class="form-label">Selecione a matrícula do aluno a ser
                             monitor:</label>
                         <form method="POST" action="admin/createManager">
-                            <input required name="aluno-mat" class="form-select" list="alunos-list" id="datalist"
+                            <input autocomplete="off" required name="aluno-mat" class="form-select" list="alunos-list" id="datalist"
                                 placeholder="Buscar aluno...">
                             <datalist id="alunos-list">
                                 {% for aluno in alunos['list'] %}
@@ -133,7 +160,7 @@
                             <button class="btn btn-primary float-end mt-2" type="submit">Criar</button>
                         </form>
                         {% else %}
-                        <span class="text-danger">Não existem alunos cadastrados!</span>
+                        <span class="t">Não existem alunos cadastrados!</span>
                         {% endif %}
                     </div>
                 </div>
@@ -208,7 +235,7 @@
 
     {% if success_access %}
     <script>
-        showCustomAlert(`{{success_access['msg']}}`);
+        showCustomAlert("Sucesso", "success", `{{success_access['msg']}}`);
     </script>
     {% endif %}
 

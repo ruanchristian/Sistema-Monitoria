@@ -15,7 +15,7 @@ function ajaxRequestSelect(value) {
         sel.append(result);
 
     }).fail(function () {
-        alert('Não existem alunos registrados :/');
+        Swal.fire('Erro', 'Não existem alunos cadastrados :/', 'error');
     });
 };
 
@@ -30,17 +30,30 @@ function displayModalAdmin(username, id) {
 function deleteAdmin(btnId) {
     const ADMIN_ID = btnId;
 
-    $.ajax({
-        type: "POST",
-        url: "/Sistema Monitoria/requests/delete-adm.php",
-        data: {
-            'id': ADMIN_ID
-        }
-    }).done(() => {
-        alert("Administrador excluído do banco de dados!");
-        location.reload();
-    }).fail(() => {
-        alert("Erro ao excluir :/");
+    Swal.fire({
+        title: 'Você tem certeza disso?',
+        text: "Esse administrador não terá mais ao sistema.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Deletar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+        $.ajax({
+            type: "POST",
+            url: "/Sistema Monitoria/requests/delete-adm.php",
+            data: {
+                'id': ADMIN_ID
+            }
+        }).done(() => {
+            Swal.fire('Excluído!', 'Esse administrador foi excluído com sucesso.', 'success').then(() => {
+                location.reload();
+            })
+        }).fail(() => { 
+            Swal.fire('Erro', 'Erro ao excluir esse adm.', 'error');
+        });  
+      }
     });
 }
 
@@ -64,6 +77,6 @@ function requestRelantionshipManagers() {
             $(".sendAll").removeClass("d-none");
         }
     }).fail(function () {
-        alert('Não existem monitores cadastrados :/');
+       Swal.fire("Erro!", "Não existem monitores cadastrados :/", "error");
     });
 }

@@ -11,6 +11,7 @@
 
     public function __construct() {
       $this->getAlunos();
+      $this->getTurmas();
       $this->alunos = $_SESSION['alunos'] ?? null;
 
       $this->monitores = Manager::getAllManagers();
@@ -43,12 +44,20 @@
         ]);
     }
 
-    private function getAlunos() {
+    public static function getAlunos() {
       $pdo = Connection::getConnection();
       $statement = $pdo->prepare("SELECT * FROM alunos");
       $statement->execute();
 
       $_SESSION['alunos'] = ['list' => $statement->fetchAll(PDO::FETCH_ASSOC)];
+    }
+
+    public static function getTurmas() {
+      $pdo = Connection::getConnection();
+      $statement = $pdo->prepare("SELECT nome, periodo FROM turmas WHERE periodo = ?");
+      $statement->execute(array(date("Y", time())));
+
+      $_SESSION['turmas'] = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     private function getCountOf($table) {

@@ -2,9 +2,11 @@
 
 class OcorrenciaController {
      private $success;
+     private $turmas;
 
      public function __construct() {
       $this->success = $_SESSION['success'] ?? null;
+      $this->turmas = $_SESSION['turmas'] ?? null;
 
       if ($this->success) {
         $_SESSION['success']['contador']++;
@@ -24,7 +26,8 @@ class OcorrenciaController {
           'admin' => $_SESSION['access_admin'] ?? NULL,
           'nome' => $_SESSION['access']['username'] ?? $_SESSION['access_admin']['username'] ?? NULL,
           'date' => date("Y-m-d", time()),
-          'sucesso' => $this->success
+          'sucesso' => $this->success,
+          'turmas' => $this->turmas
         ]);
     }
 

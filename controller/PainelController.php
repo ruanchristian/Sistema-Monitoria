@@ -3,12 +3,16 @@
 class PainelController {
     private $admins;
     private $alunos;
+    private $turmas;
     private $success;
 
     public function __construct() {
+        HomeController::getAlunos();
+        HomeController::getTurmas();
         $this->admins = Admin::getAllAdmins() ?? NULL;
         $this->success = $_SESSION['success_adm'] ?? NULL;
         $this->alunos = $_SESSION['alunos'] ?? NULL;
+        $this->turmas = $_SESSION['turmas'] ?? NULL;
 
         if ($this->success) {
             $_SESSION['success_adm']['contador']++;
@@ -29,7 +33,8 @@ class PainelController {
             'nome' => $_SESSION['access']['username'] ?? $_SESSION['access_admin']['username'] ?? NULL,
             'admins' => $this->admins,
             'alunos' => $this->alunos,
-            'success_access' => $this->success
+            'turmas' => $this->turmas,
+            'success_access' => $this->success,
         ]);
     }
 }

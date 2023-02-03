@@ -43,9 +43,9 @@ class SenhaController {
 
       $managerReference->changePassword($password1, $password2, $senhaAtual);
 
-      $_SESSION['success'] = ['msg' => "Senha alterada com sucesso", 'contador' => 1];
+      $_SESSION['success'] = ['msg' => "Sua senha foi alterada com sucesso.", 'contador' => 1];
       header('Location: /Sistema Monitoria/senha');
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
       $_SESSION['error_msg'] = ['msg' => $e->getMessage(), 'contador' => 1];
       header("Location: /Sistema Monitoria/senha");
     }

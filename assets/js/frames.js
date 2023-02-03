@@ -12,29 +12,15 @@ $(document).ready(function () {
     })
 });
 
-function showCustomAlert(msg) {
+function showCustomAlert(title, type, msg) {
     Swal.fire({
-        titleText: "Sucesso",
+        titleText: title,
         text: msg,
-        icon: "success",
+        icon: type,
         confirmButtonText: "OK",
-        confirmButtonColor: '#0056b3'
+        confirmButtonColor: '#3085d6'
     });
 }
-
-$(function() {
-    $("#dialog").dialog({
-        draggable: false,
-        resizable: false,
-        modal: true,
-        hide: "fade",
-        buttons: {
-        Ok: function() {
-          $(this).dialog("close");
-        }
-      }
-    });
-  });
 
 window.addEventListener('DOMContentLoaded', e => {
     const sidebarToggle = document.body.querySelector('#sidebarToggle');
@@ -45,14 +31,6 @@ window.addEventListener('DOMContentLoaded', e => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
-});
-
-$('#btnSearchCurrent').click(() => {
-    $('#modalSpin').modal('show');
-    setTimeout(function () {
-        $('#modalSpin').modal('hide');
-        console.log('Procurando...');
-    }, 1500);
 });
 
 const body = document.querySelector(".c26");

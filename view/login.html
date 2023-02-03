@@ -24,16 +24,14 @@
         integrity="sha512-j3gF1rYV2kvAKJ0Jo5CdgLgSYS7QYmBVVUjduXdoeBkc4NFV4aSRTi+Rodkiy9ht7ZYEwF+s09S43Z1Y+ujUkA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
     <!-- My Custom CSS and JS file -->
-    <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/login-style.css">
-    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
-    <script src="/Sistema Monitoria/assets/js/frames.js"></script>
+    <link rel="stylesheet" href="assets/styles/login-style.css">
+    <link rel="icon" href="assets/img/infortec2b-icon.png">
+    <script src="assets/js/frames.js"></script>
+    <script src="assets/js/sweetalert.js"></script>
 </head>
 
 {% block body %}
@@ -47,7 +45,7 @@
             <div class="card-body">
                 <p class="login-msg text-center">Faça o login como monitor</p>
 
-                <form method="POST" action="/Sistema Monitoria/login/check">
+                <form method="POST" action="login/check">
                     <div class="input-group mb-3">
                         <input required placeholder="Matrícula" id="field01" class="form-control" type="text"
                             maxlength="7" name="matricula" oninput="forceOp()">
@@ -76,9 +74,9 @@
         </div>
     </div>
     {% if error != null %}
-    <div id="dialog" title="Problema ao logar">
-        <p>{{error['msg']}}</p>
-    </div>
+    <script>
+        showCustomAlert("Problema ao logar!", "error", `{{error['msg']}}`);
+    </script>
     {% endif %}
 </body>
 {% endblock %}

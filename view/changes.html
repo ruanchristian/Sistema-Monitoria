@@ -18,10 +18,11 @@
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
     <!-- My Custom CSS and JS file -->
-    <link rel="stylesheet" href="/Sistema Monitoria/assets/styles/styles.css">
-    <script src="/Sistema Monitoria/assets/js/frames.js"></script>
+    <link rel="stylesheet" href="assets/styles/styles.css">
+    <script src="assets/js/frames.js"></script>
+    <script src="assets/js/sweetalert.js"></script>
 
-    <link rel="icon" href="/Sistema Monitoria/assets/img/infortec2b-icon.png">
+    <link rel="icon" href="assets/img/infortec2b-icon.png">
 
     <!-- Font Awesome LIB -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -40,23 +41,15 @@
             <div class="container-fluid px-4">
                 <form class="formPChange text-center" method="POST" action="senha/reset">
                     {% if error %}
-                    <div class="row">
-                        <div
-                            class="alert alert-success alert-dismissible fade show text-white col-md-4 col-md-offset-4 mx-auto mt-4 bg-danger bg-gradient">
-                            {{error['msg']}}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    </div>
+                    <script>
+                        showCustomAlert("Erro :(", "error", `{{error['msg']}}`);
+                    </script>
                     {% endif %}
 
                     {% if isReseted %}
-                    <div class="row">
-                        <div
-                            class="alert alert-success alert-dismissible fade show col-md-4 col-md-offset-4 mx-auto mt-4 bg-success text-white bg-gradient mt-4">
-                            {{isReseted['msg']}}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    </div>
+                    <script>
+                        showCustomAlert("Senha alterada", "success", `{{isReseted['msg']}}`);
+                    </script>
                     {% endif %}
                     <div class="form-group mt-5">
                         <label for="atual">
