@@ -7,7 +7,8 @@ $(document).ready(function () {
         order: [[2, 'asc']],
         language: {
             url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json",
-            searchPlaceholder: "Buscar alunos..."
+            searchPlaceholder: "Buscar alunos...",
+            emptyTable: `Não existem alunos registrados nesse atual período letivo (${new Date().getFullYear()})`
         }
     })
 });
@@ -20,6 +21,18 @@ function showCustomAlert(title, type, msg) {
         confirmButtonText: "OK",
         confirmButtonColor: '#3085d6'
     });
+}
+
+function showErrorToast(msg) {
+    const TOAST = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        timerProgressBar: true,
+        showConfirmButton: false,
+        timer: 4000
+    });
+
+    TOAST.fire({icon: 'error', text: msg});
 }
 
 window.addEventListener('DOMContentLoaded', e => {

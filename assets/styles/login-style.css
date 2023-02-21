@@ -16,7 +16,7 @@
   align-items: center;
   -ms-flex-align: center;
   background-color: #ebe8e8;
-  height: 85vh;
+  height: 100vh;
 }
 
 .card {
@@ -70,6 +70,10 @@ h2:hover {
 }
 
 @media (max-width: 600px) {
+  .login {
+    height: 80vh;
+  }
+
   .login-container {
     width: 20rem;
   }

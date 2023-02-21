@@ -160,21 +160,13 @@
                             <button class="btn btn-primary float-end mt-2" type="submit">Criar</button>
                         </form>
                         {% else %}
-                        <span class="t">Não existem alunos cadastrados!</span>
+                        <span class="text-danger">Não existem alunos cadastrados nesse período letivo <br> Faça o cadastro dos novos alunos.</span> 
                         {% endif %}
                     </div>
                 </div>
                 <div class="row mt-3 text-center">
                     <hr>
                     <h4 class="text-decoration-underline">Configurações especiais</h4>
-                    <div class="col mt-2 mb-3">
-                        <a href="admin/deleteOf/alunos">
-                            <button class="btn btn-danger bg-gradient">
-                                <i class="fas fa-trash"></i>
-                                Deletar todos os alunos
-                            </button>
-                        </a>
-                    </div> 
                     <div class="col-md mt-2 mb-3">
                         <a href="admin/deleteOf/monitores">
                             <button class="btn btn-danger bg-gradient">
@@ -221,7 +213,7 @@
                         <div class="mb-3">
                             <label for="admin-pass" class="col-form-label">Senha:</label>
                             <input required placeholder="Informe uma nova senha..." type="password" name="pass"
-                                class="form-control" id="admin-pass"></input>
+                                class="form-control" minlength="4" id="admin-pass"></input>
                         </div>
                 </div>
                 <div class="modal-footer">

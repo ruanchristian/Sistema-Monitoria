@@ -58,9 +58,9 @@ class CadastroController {
          $alunos = $_SESSION['alunos_cad'];
          $turma_nome = $alunos[0]['turma'];
   
-         $statement = $this->pdo->prepare("INSERT INTO alunos (matricula, nome, turma) VALUES (?, ?, ?)");
+         $statement = $this->pdo->prepare("INSERT INTO alunos (matricula, nome, turma, periodo) VALUES (?, ?, ?, ?)");
          foreach ($alunos as $newAluno) {
-              $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma']));
+              $statement->execute(array($newAluno['matricula'], $newAluno['nome_aluno'], $newAluno['turma'], date("Y", time())));
          }
         $this->cadTurma($turma_nome);
         unset($_SESSION['alunos_cad']); 

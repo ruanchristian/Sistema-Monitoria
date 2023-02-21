@@ -68,14 +68,14 @@ class AdminController {
    public function deleteOf($table_name) {
     $pdo = Connection::getConnection();
 
-    $permissoes = ['alunos', 'monitores', 'observacoes', 'ocorrencias', 'faltas'];
+    $permissoes = ['monitores', 'observacoes', 'ocorrencias', 'faltas'];
 
     if (!in_array($table_name[0], $permissoes) && !in_array($table_name[1], $permissoes)) {
       header("Location: /Sistema Monitoria/painel");
       die;
     }
 
-    if ($table_name[0] === $permissoes[2] && $table_name[1] === $permissoes[3]) {
+    if ($table_name[0] === $permissoes[1] && $table_name[1] === $permissoes[2]) {
       $pdo->exec("TRUNCATE $table_name[0]; TRUNCATE $table_name[1];");
       $_SESSION['success_adm'] = ['msg' => "Os dados das tabelas Observações e Ocorrências foram excluídos com sucesso.", 'contador' => 1];
       header("Location: /Sistema Monitoria/painel");

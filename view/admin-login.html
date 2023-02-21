@@ -42,7 +42,7 @@
     </div>
     {% if error %}
     <script>
-        showCustomAlert("Permissão negada!", "error", `{{error['msg']}}`);
+        showErrorToast(`{{error['msg']}}`);
     </script>
     {% endif %}
 </body>

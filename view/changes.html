@@ -14,8 +14,7 @@
     </script>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.1.js"
-        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
     <!-- My Custom CSS and JS file -->
     <link rel="stylesheet" href="assets/styles/styles.css">
@@ -60,12 +59,12 @@
                         <label for="newPass1">
                             Informe sua nova senha: <br>
                             <input required class="form-control" type="password" name="newPass1" id="newPass1"
-                                maxlength="17">
+                               minlength="4" maxlength="17">
                         </label><br><br>
                         <label for="newPass2">
                             Confirme sua nova senha: <br>
                             <input required class="form-control" type="password" name="newPass2" id="newPass2"
-                                maxlength="17">
+                               minlength="4" maxlength="17">
                         </label><br><br>
                         <button class="btn btn-primary" type="submit">
                             <i class="fas fa-floppy-disk"></i>
@@ -74,23 +73,6 @@
                     </div>
                 </form>
         </main>
-
-        <div id="modalSpin" class="modal fade" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Salvando senha...</h4>
-                    </div>
-                    <div class="modal-body mx-auto d-block">
-                        <div class="d-flex justify-content-center">
-                            <div class="spinner-border" style="width: 3rem; height: 3rem;">
-                                <span class="visually-hidden"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
@@ -109,11 +91,3 @@
     </div>
     </div>
 </body>
-<script>
-    $(".formPChange").submit(() => {
-        $(".modal").modal("show");
-        setTimeout(function () {
-            console.log("...");
-        }, 1000);
-    });
-</script>

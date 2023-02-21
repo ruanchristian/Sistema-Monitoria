@@ -75,7 +75,7 @@
     </div>
     {% if error != null %}
     <script>
-        showCustomAlert("Problema ao logar!", "error", `{{error['msg']}}`);
+        showErrorToast(`{{error['msg']}}`);
     </script>
     {% endif %}
 </body>

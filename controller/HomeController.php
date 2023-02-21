@@ -46,8 +46,8 @@
 
     public static function getAlunos() {
       $pdo = Connection::getConnection();
-      $statement = $pdo->prepare("SELECT * FROM alunos");
-      $statement->execute();
+      $statement = $pdo->prepare("SELECT * FROM alunos WHERE periodo = ?");
+      $statement->execute(array("2022"));
 
       $_SESSION['alunos'] = ['list' => $statement->fetchAll(PDO::FETCH_ASSOC)];
     }
@@ -55,14 +55,21 @@
     public static function getTurmas() {
       $pdo = Connection::getConnection();
       $statement = $pdo->prepare("SELECT nome, periodo FROM turmas WHERE periodo = ?");
-      $statement->execute(array(date("Y", time())));
+      $statement->execute(array("2022"));
 
       $_SESSION['turmas'] = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     private function getCountOf($table) {
       $pdo = Connection::getConnection();
-      $statement = $pdo->prepare("SELECT COUNT(*) as total FROM {$table}");
+
+      if($table === "alunos") {
+        $statement = $pdo->prepare("SELECT COUNT(*) as total FROM $table WHERE periodo = ?");
+        $statement->execute(array("2022"));
+        return $statement->fetch()['total'];
+      }
+      
+      $statement = $pdo->prepare("SELECT COUNT(*) as total FROM $table");
       $statement->execute();
 
       return $statement->fetch()['total'];
